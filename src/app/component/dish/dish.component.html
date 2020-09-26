@@ -1,18 +1,15 @@
 <div class="dish">
     <h1>Plato: {{this.name}}</h1>
     <h2>Ingredientes:</h2>
-    <ul>
-        <table>
-            <tr>
-                <td>Item</td>
-                <td>Cantidad</td>
-            </tr>
-            <tr *ngFor="let currentIngredient of ingredients">
-                <td>{{ currentIngredient.name }} </td>
-                <td>{{ currentIngredient.quantity }}
-                <td>
-            </tr>
-        </table>
-        <p>Total Ingredientes: <strong>{{ingredients.length}}</strong></p>
-    </ul>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Cantidad</th>
+        </tr>
+        <tr *ngFor="let currentIngredient of ingredients">
+            <td>{{ currentIngredient.name }} </td>
+            <td>{{ currentIngredient.quantity }} </td>
+        </tr>
+    </table>
+    <p>Total Ingredientes: <strong>{{ingredients.length}}</strong></p>
 </div>
