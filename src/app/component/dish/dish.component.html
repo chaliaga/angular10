@@ -1,0 +1,8 @@
+<h1>Plato: {{this.name}}</h1>
+<p>Ingredientes:</p>
+<ul>
+    <li *ngFor="let currentIngredient of ingredients">
+        {{ currentIngredient.name }} ----> <span>Cantidad</span> {{ currentIngredient.quantity }}
+    </li>
+    <p>Total Ingredientes: <strong>{{ingredients.length}}</strong></p>
+</ul>
