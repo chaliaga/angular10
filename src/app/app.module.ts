@@ -3,20 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
-import { OrderComponent } from './order/order.component';
-import { CustomerComponent } from './interfaces/customer/customer.component';
-import { DishComponent } from './interfaces/dish/dish.component';
-import { IngredientComponent } from './interfaces/ingredient/ingredient.component';
+import { MenuComponent } from './component/menu/menu.component';
+import { OrderComponent } from './component/order/order.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    OrderComponent,
-    CustomerComponent,
-    DishComponent,
-    IngredientComponent
+    OrderComponent
   ],
   imports: [
     BrowserModule,
