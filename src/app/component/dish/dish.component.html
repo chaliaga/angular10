@@ -7,10 +7,11 @@
                 <td>Item</td>
                 <td>Cantidad</td>
             </tr>
-        <tr *ngFor="let currentIngredient of ingredients">
-            <td>{{ currentIngredient.name }} </td>
-            <td>{{ currentIngredient.quantity }}<td>
-        </tr>
+            <tr *ngFor="let currentIngredient of ingredients">
+                <td>{{ currentIngredient.name }} </td>
+                <td>{{ currentIngredient.quantity }}
+                <td>
+            </tr>
         </table>
         <p>Total Ingredientes: <strong>{{ingredients.length}}</strong></p>
     </ul>
