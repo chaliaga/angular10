@@ -35,6 +35,4 @@ export class MenuComponent implements OnInit {
             { name: 'Arroz Chaufa', ingredient: [ { name: 'arroz', quantity: '1kg.' }, { name: 'pollo', quantity: '1 un.' } ] }
         ];
     }
-
-
 }
