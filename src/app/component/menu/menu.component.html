@@ -1,5 +1,18 @@
-<ul style="list-style-type: none;">
-    <li *ngFor="let dish of dishes">
-        <app-dish [name]=dish.name [ingredients]=dish.ingredient></app-dish>
-    </li>
-</ul>
+<p-accordion [multiple]="true">
+    <p-accordionTab>
+        <ng-template pTemplate="header"><i
+                class="pi pi-shopping-cart product-category-icon"></i><span
+                class="cart-title">Your Shopping Cart - Total Dishes Selected: {{ totalDishes() }}</span>
+        </ng-template>
+        <ul>
+            <li *ngFor="let item of cart">
+                {{ item.name }}
+            </li>
+        </ul>
+    </p-accordionTab>
+    <p-accordionTab [selected]="true">
+        <ng-template pTemplate="header"><i class="pi pi-home product-category-icon"></i><span
+                class="cart-title">Peruvian Dishes</span></ng-template>
+        <app-dish [dish]=dishes (dishSelected)="processAddDish($event)"></app-dish>
+    </p-accordionTab>
+</p-accordion>

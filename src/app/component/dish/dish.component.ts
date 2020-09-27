@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Ingredient } from '../../interface/ingredient';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Dish } from '../../interface/dish';
+import { PrimeNGConfig } from 'primeng/api';
+
 
 @Component({
     selector: 'app-dish',
@@ -8,28 +10,24 @@ import { Ingredient } from '../../interface/ingredient';
 })
 export class DishComponent implements OnInit {
     // tslint:disable-next-line:variable-name
-    private _name;
-    get name(): string {
-        return this._name;
+    private _dish;
+    get dish(): Dish[] {
+        return this._dish;
     }
 
-    @Input() set name(value: string) {
-        this._name = value;
+    @Input() set dish(value: Dish[]) {
+        this._dish = value;
     }
 
-    // tslint:disable-next-line:variable-name
-    private _ingredients;
-    get ingredients(): Ingredient[] {
-        return this._ingredients;
-    }
+    @Output() dishSelected = new EventEmitter<Dish>();
 
-    @Input() set ingredients(value: Ingredient[]) {
-        this._ingredients = value;
-    }
-
-    constructor() {
-    }
+    constructor(private primengConfig: PrimeNGConfig) { }
 
     ngOnInit(): void {
+        this.primengConfig.ripple = true;
+    }
+
+    addToCart(dish: Dish): void {
+        this.dishSelected.emit(dish);
     }
 }
