@@ -1,14 +1,15 @@
+<p-messages [(value)]="message" [enableService]="false"></p-messages>
 <p-accordion [multiple]="true">
     <p-accordionTab>
-        <ng-template pTemplate="header"><i
-                class="pi pi-shopping-cart product-category-icon"></i><span
-                class="cart-title">Your Shopping Cart - Total Dishes Selected: {{ totalDishes() }}</span>
+        <ng-template pTemplate="header">
+            <i class="pi pi-shopping-cart product-category-icon"></i>
+            <span class="cart-title">Your Shopping Cart - Number Dishes Selected:</span>
+            <span class="p-overlay-badge p-text-right">
+                <i class="pi pi-bell p-pl-2" style="font-size: 2em"></i>
+                <span class="p-badge">{{ totalDishes() }}</span>
+            </span>
         </ng-template>
-        <ul>
-            <li *ngFor="let item of cart">
-                {{ item.name }}
-            </li>
-        </ul>
+        <app-order [customerCart]=cart></app-order>
     </p-accordionTab>
     <p-accordionTab [selected]="true">
         <ng-template pTemplate="header"><i class="pi pi-home product-category-icon"></i><span

@@ -17,6 +17,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import {AccordionModule} from 'primeng/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MessagesModule} from 'primeng/messages';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         RippleModule,
         RatingModule,
         FormsModule,
-        AccordionModule
+        AccordionModule,
+        MessagesModule
     ],
     providers: [],
     bootstrap: [ AppComponent ]

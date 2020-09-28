@@ -1,1 +1,20 @@
-<p>order works!</p>
+<div class="p-grid">
+    <div class="p-col-12">
+        <ng-container *ngFor="let item of customerCart">
+            <div class="p-field p-grid">
+                <label [for]=item.id class="p-col-fixed p-text-left"
+                       style="width:200px">{{ item.name }}</label>
+                <div class="p-col">
+                    <input [id]=item.id type="text" name="Quantity" pInputText
+                           placeholder="Quantity">
+                    <button pRipple class="p-ml-2" pButton pbarrel type="button" label="Delete"
+                            (click)="deleteCurrentDish(item.id)"></button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="p-col-12">
+        <button pButton pRipple type="button" label="Place Order"></button>
+    </div>
+</div>
+
