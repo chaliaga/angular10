@@ -75,7 +75,7 @@ export class MenuComponent implements OnInit {
         return !!this.cart.find(({ id }) => id === currentId);
     }
 
-    processAddDish(dishSelected: Dish): void {
+    addDish(dishSelected: Dish): void {
         this.message = [];
         this.alreadyExist = false;
         if (!this.isDishAlreadySelected(dishSelected.id)) {

@@ -14,6 +14,6 @@
     <p-accordionTab [selected]="true">
         <ng-template pTemplate="header"><i class="pi pi-home product-category-icon"></i><span
                 class="cart-title">Peruvian Dishes</span></ng-template>
-        <app-dish [dish]=dishes (dishSelected)="processAddDish($event)"></app-dish>
+        <app-dish [dish]=dishes (dishSelected)="addDish($event)"></app-dish>
     </p-accordionTab>
 </p-accordion>
