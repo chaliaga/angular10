@@ -19,6 +19,7 @@ import {AccordionModule} from 'primeng/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MessagesModule} from 'primeng/messages';
 import { CountryComponent } from './country/country.component';
+import { PrefixPipe } from './util/prefix.pipe';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { CountryComponent } from './country/country.component';
         MenuComponent,
         OrderComponent,
         DishComponent,
-        CountryComponent
+        CountryComponent,
+        PrefixPipe
     ],
     imports: [
         BrowserModule,

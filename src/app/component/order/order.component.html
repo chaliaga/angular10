@@ -3,7 +3,7 @@
         <ng-container *ngFor="let item of customerCart">
             <div class="p-field p-grid">
                 <label [for]=item.id class="p-col-fixed p-text-left"
-                       style="width:200px">{{ item.name }}</label>
+                       style="width:15%">{{ item.name | addPrefix }}</label>
                 <div class="p-col">
                     <input [id]=item.id type="text" name="Quantity" pInputText
                            placeholder="Quantity">
