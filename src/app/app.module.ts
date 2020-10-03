@@ -18,13 +18,15 @@ import { RippleModule } from 'primeng/ripple';
 import {AccordionModule} from 'primeng/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MessagesModule} from 'primeng/messages';
+import { CountryComponent } from './country/country.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         MenuComponent,
         OrderComponent,
-        DishComponent
+        DishComponent,
+        CountryComponent
     ],
     imports: [
         BrowserModule,
