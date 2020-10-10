@@ -12,10 +12,12 @@
 </div>
 -->
 
-<amplify-authenticator *ngIf="authState !== 'signedin'"></amplify-authenticator>
-
-<div *ngIf="authState === 'signedin' && user" class="App">
-    <amplify-sign-out></amplify-sign-out>
-    <div>Hello, {{user.username}}</div>
-    <app-menu></app-menu>
-</div>
+<amplify-authenticator>
+    <div>
+        Restaurants App
+        <amplify-sign-out></amplify-sign-out>
+        <app-menu></app-menu>
+        <router-outlet></router-outlet>
+    </div>
+    <!-- previous code -->
+</amplify-authenticator>

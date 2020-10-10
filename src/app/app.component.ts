@@ -18,6 +18,8 @@ export class AppComponent implements OnInit, OnDestroy{
     onAuthUIStateChange((authState, authData) => {
       this.authState = authState;
       this.user = authData as CognitoUserInterface;
+      console.log(this.authState);
+      console.log(this.user);
       this.ref.detectChanges();
     });
   }
