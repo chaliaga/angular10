@@ -27,4 +27,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Host AWS
-This project is hosted on [https://master.d1k6l2dno6x5ih.amplifyapp.com/]
+This project is hosted on [https://master.dtne14psb3nym.amplifyapp.com/]
