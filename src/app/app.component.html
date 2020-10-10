@@ -1,3 +1,4 @@
+<!--
 <div class="p-grid p-ai-stretch">
     <div class="p-col-12">
         <div class="p-text-center p-text-bold">
@@ -9,5 +10,12 @@
         <router-outlet></router-outlet>
     </div>
 </div>
+-->
 
+<amplify-authenticator *ngIf="authState !== 'signedin'"></amplify-authenticator>
 
+<div *ngIf="authState === 'signedin' && user" class="App">
+    <amplify-sign-out></amplify-sign-out>
+    <div>Hello, {{user.username}}</div>
+    <app-menu></app-menu>
+</div>

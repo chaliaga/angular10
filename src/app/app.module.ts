@@ -15,11 +15,16 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
-import {AccordionModule} from 'primeng/accordion';
+import { AccordionModule } from 'primeng/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MessagesModule} from 'primeng/messages';
+import { MessagesModule } from 'primeng/messages';
 import { CountryComponent } from './country/country.component';
 import { PrefixPipe } from './util/prefix.pipe';
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { Amplify } from 'aws-amplify';
+import awsconfig from '../aws-exports';
+
+Amplify.configure(awsconfig);
 
 @NgModule({
     declarations: [
@@ -44,7 +49,8 @@ import { PrefixPipe } from './util/prefix.pipe';
         RatingModule,
         FormsModule,
         AccordionModule,
-        MessagesModule
+        MessagesModule,
+        AmplifyUIAngularModule
     ],
     providers: [],
     bootstrap: [ AppComponent ]
