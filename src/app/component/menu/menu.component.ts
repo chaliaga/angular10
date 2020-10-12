@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Dish } from '../../interface/dish';
+import { APPSTORAGE, SPICY } from '../../util/constanst';
 import { Message } from 'primeng/api';
 
 @Component({
@@ -8,17 +9,15 @@ import { Message } from 'primeng/api';
     styleUrls: [ './menu.component.scss' ]
 })
 export class MenuComponent implements OnInit {
-
-    dishes: Dish[];
-    cart: Dish[] = [];
-    alreadyExist: boolean;
+    dishesAll: Dish[];
+    car: Dish[] = [];
     message: Message[] = [];
 
     constructor() {
     }
 
     ngOnInit(): void {
-        this.dishes = [
+        this.dishesAll = [
             {
                 id: 1,
                 name: 'Ceviche',
@@ -29,6 +28,8 @@ export class MenuComponent implements OnInit {
                 rating: 5,
                 category: 'Marina',
                 price: 15,
+                stock: true,
+                spicy: SPICY.PICAPOCO,
                 inventoryStatus: 'INSTOCK',
                 image: 'https://tipsparatuviaje.com/wp-content/uploads/2019/08/ceviche-comida.jpg'
             },
@@ -42,6 +43,8 @@ export class MenuComponent implements OnInit {
                 rating: 4,
                 category: 'Criollo',
                 price: 18,
+                stock: false,
+                spicy: SPICY.NOPICA,
                 inventoryStatus: 'OUTOFSTOCK',
                 image: 'https://tipsparatuviaje.com/wp-content/uploads/2019/08/arroz-con-pollo.jpg'
             },
@@ -55,6 +58,8 @@ export class MenuComponent implements OnInit {
                 rating: 3,
                 category: 'Criollo',
                 price: 25,
+                stock: true,
+                spicy: SPICY.NOPICA,
                 inventoryStatus: 'INSTOCK',
                 image: 'https://tipsparatuviaje.com/wp-content/uploads/2019/08/tacu-tacu.jpg'
             },
@@ -65,6 +70,8 @@ export class MenuComponent implements OnInit {
                 rating: 5,
                 category: 'China',
                 price: 17,
+                stock: true,
+                spicy: SPICY.PICAMUCHO,
                 inventoryStatus: 'INSTOCK',
                 image: 'https://tipsparatuviaje.com/wp-content/uploads/2019/08/arroz-chaufa-peruano.jpg'
             }
@@ -72,22 +79,33 @@ export class MenuComponent implements OnInit {
     }
 
     isDishAlreadySelected(currentId: number): boolean {
-        return !!this.cart.find(({ id }) => id === currentId);
+        return !!this.car.find(({ id }) => id === currentId);
     }
 
     addDish(dishSelected: Dish): void {
-        this.message = [];
-        this.alreadyExist = false;
-        if (!this.isDishAlreadySelected(dishSelected.id)) {
-            this.cart.push(dishSelected);
+        if (dishSelected && !this.isDishAlreadySelected(dishSelected.id)) {
+            this.car.push(dishSelected);
+            localStorage.setItem(APPSTORAGE.CAR, JSON.stringify(this.car));
         } else {
-            this.alreadyExist = true;
-            this.message = [
-                { severity: 'warn', summary: 'Warning', detail: 'The dish is already selected. Please complete the quantity.' } ];
+            this.message = [ {
+                severity: 'warn',
+                summary: 'Warning',
+                detail: 'The dish is already selected. Please complete the quantity.'
+            } ];
         }
     }
 
-    totalDishes(): string {
-        return this.cart.length.toString();
+    getStyleSpicy(spicy: SPICY): string {
+        switch (spicy) {
+            case SPICY.NOPICA: {
+                return 'no-pica';
+            }
+            case SPICY.PICAPOCO: {
+                return 'pica-poco';
+            }
+            case SPICY.PICAMUCHO: {
+                return 'pica-mucho';
+            }
+        }
     }
 }

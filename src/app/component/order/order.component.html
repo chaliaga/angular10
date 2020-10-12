@@ -1,6 +1,6 @@
 <div class="p-grid">
     <div class="p-col-12">
-        <ng-container *ngFor="let item of customerCart">
+        <ng-container *ngFor="let item of car">
             <div class="p-field p-grid">
                 <label [for]=item.id class="p-col-fixed p-text-left"
                        style="width:15%">{{ item.name | addPrefix }}</label>
@@ -14,7 +14,7 @@
         </ng-container>
     </div>
     <div class="p-col-12">
-        <button icon="pi pi-check" pButton pRipple type="button" label="Place Order" [disabled]="customerCart.length === 0"></button>
+        <button icon="pi pi-check" pButton pRipple type="button" label="Place Order" [disabled]="car.length === 0"></button>
     </div>
 </div>
 

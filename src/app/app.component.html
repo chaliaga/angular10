@@ -1,23 +1,36 @@
-<!--
-<div class="p-grid p-ai-stretch">
+<div class="p-d-flex p-flex-column p-flex-md-row">
     <div class="p-col-12">
-        <div class="p-text-center p-text-bold">
-            <h1>Menu - Hawks Nation <i class="pi pi-apple" style="font-size: 2rem"></i></h1>
-        </div>
-    </div>
-    <div class="p-col-12">
-        <app-menu></app-menu>
-        <router-outlet></router-outlet>
+        <amplify-authenticator>
+            <div class="p-grid p-ai-stretch">
+                <div class="p-col-12">
+                    <div class="p-text-center">Menu - Hawks Nation <i class="pi pi-apple"
+                                                                      style="font-size: 2rem"></i>
+                    </div>
+                </div>
+                <div class="p-col-12">
+                    <p-menubar [model]="items">
+                        <ng-template pTemplate="start">
+                            <a routerLink="/app-order" routerLinkActive="active">
+                                <span class="p-overlay-badge p-text-right">
+                                    <i class="pi pi-shopping-cart product-category-icon"
+                                       style="font-size: 2em"></i>
+                                    <span class="p-badge">{{ totalDishes() }}</span>
+                                </span>
+                            </a>
+                        </ng-template>
+                        <ng-template pTemplate="end">
+                            <amplify-sign-out></amplify-sign-out>
+                        </ng-template>
+                    </p-menubar>
+                </div>
+                <div class="p-col-12">
+                    <!--
+                    <p-messages [(value)]="message" [enableService]="false"></p-messages> -->
+                </div>
+                <div class="p-col-12">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </amplify-authenticator>
     </div>
 </div>
--->
-
-<amplify-authenticator>
-    <div>
-        Restaurants App
-        <amplify-sign-out></amplify-sign-out>
-        <app-menu></app-menu>
-        <router-outlet></router-outlet>
-    </div>
-    <!-- previous code -->
-</amplify-authenticator>

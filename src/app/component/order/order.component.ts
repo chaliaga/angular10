@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Dish } from '../../interface/dish';
+import { APPSTORAGE } from '../../util/constanst';
 
 @Component({
     selector: 'app-order',
@@ -7,22 +8,16 @@ import { Dish } from '../../interface/dish';
     styleUrls: [ './order.component.scss' ]
 })
 export class OrderComponent implements OnInit {
-    // tslint:disable-next-line:variable-name
-    private _customerCart: Dish[] = [];
-    get customerCart(): Dish[] {
-        return this._customerCart;
-    }
-
-    @Input() set customerCart(value: Dish[]) {
-        this._customerCart = value;
-    }
+    car: Dish[];
     constructor() {
     }
 
     ngOnInit(): void {
+        this.car = JSON.parse(localStorage.getItem(APPSTORAGE.CAR));
     }
 
     deleteCurrentDish(id: number): void {
-        this._customerCart.splice(this._customerCart.findIndex(currentDish => currentDish.id === id), 1);
+       this.car.splice(this.car.findIndex(currentDish => currentDish.id === id), 1);
+       localStorage.setItem(APPSTORAGE.CAR,  JSON.stringify(this.car));
     }
 }

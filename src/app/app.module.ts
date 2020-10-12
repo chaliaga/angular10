@@ -23,6 +23,8 @@ import { PrefixPipe } from './util/prefix.pipe';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { Amplify } from 'aws-amplify';
 import awsconfig from '../aws-exports';
+import { MenubarModule } from 'primeng/menubar';
+import { ColorSpicyPipe } from './util/color-spicy.pipe';
 
 Amplify.configure(awsconfig);
 
@@ -33,7 +35,8 @@ Amplify.configure(awsconfig);
         OrderComponent,
         DishComponent,
         CountryComponent,
-        PrefixPipe
+        PrefixPipe,
+        ColorSpicyPipe
     ],
     imports: [
         BrowserModule,
@@ -50,7 +53,8 @@ Amplify.configure(awsconfig);
         FormsModule,
         AccordionModule,
         MessagesModule,
-        AmplifyUIAngularModule
+        AmplifyUIAngularModule,
+        MenubarModule
     ],
     providers: [],
     bootstrap: [ AppComponent ]
