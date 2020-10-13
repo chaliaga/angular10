@@ -2,11 +2,13 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
 import { MenuItem } from 'primeng/api';
 import { APPSTORAGE } from './util/constanst';
+import { slideInAnimation } from './route-animation';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: [ './app.component.scss' ]
+    styleUrls: [ './app.component.scss' ],
+    animations: [ slideInAnimation ]
 })
 export class AppComponent implements OnInit, OnDestroy {
     user: CognitoUserInterface | undefined;
@@ -27,16 +29,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
         this.items = [
             {
-                label: 'File',
-                items: [ {
-                    label: 'New',
-                    icon: 'pi pi-fw pi-plus',
-                    items: [
-                        { label: 'Project' },
-                        { label: 'Other' },
-                    ]
-                },
-                    { label: 'Open' },
+                label: 'Menu',
+                items: [
+                    { label: 'See All', icon: 'pi pi-eye', routerLink: ['/app-menu'] },
                     { label: 'Quit' }
                 ]
             }

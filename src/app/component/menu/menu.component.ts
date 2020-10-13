@@ -12,6 +12,7 @@ export class MenuComponent implements OnInit {
     dishesAll: Dish[];
     car: Dish[] = [];
     message: Message[] = [];
+    isLoading = true;
 
     constructor() {
     }
@@ -76,6 +77,7 @@ export class MenuComponent implements OnInit {
                 image: 'https://tipsparatuviaje.com/wp-content/uploads/2019/08/arroz-chaufa-peruano.jpg'
             }
         ];
+        // this.isLoading = false;
     }
 
     isDishAlreadySelected(currentId: number): boolean {

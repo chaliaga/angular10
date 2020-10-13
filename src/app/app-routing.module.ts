@@ -4,8 +4,8 @@ import { MenuComponent } from './component/menu/menu.component';
 import { OrderComponent } from './component/order/order.component';
 
 const routes: Routes = [
-  { path: 'app-menu', component: MenuComponent },
-  { path: 'app-order', component: OrderComponent },
+  { path: 'app-menu', component: MenuComponent, data: { animation: 'Menu'} },
+  { path: 'app-order', component: OrderComponent, data: { animation: 'Order'} },
   { path: '', redirectTo: '/app-menu', pathMatch: 'full' }
 ];
 

@@ -5,6 +5,17 @@
     font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;
   }
 
+  span:active, span:focus {
+    outline: 0;
+    border: none;
+    -moz-outline-style: none;
+    cursor: pointer;
+  }
+
+  span.shopping {
+    cursor: pointer;
+  }
+
   .p-dropdown {
     width: 14rem;
     font-weight: normal;

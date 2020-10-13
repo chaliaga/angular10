@@ -25,6 +25,8 @@ import { Amplify } from 'aws-amplify';
 import awsconfig from '../aws-exports';
 import { MenubarModule } from 'primeng/menubar';
 import { ColorSpicyPipe } from './util/color-spicy.pipe';
+import { InputNumberModule } from 'primeng/inputnumber';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 Amplify.configure(awsconfig);
 
@@ -54,7 +56,9 @@ Amplify.configure(awsconfig);
         AccordionModule,
         MessagesModule,
         AmplifyUIAngularModule,
-        MenubarModule
+        MenubarModule,
+        InputNumberModule,
+        ProgressSpinnerModule
     ],
     providers: [],
     bootstrap: [ AppComponent ]
