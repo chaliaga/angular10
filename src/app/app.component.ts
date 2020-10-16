@@ -43,6 +43,6 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     totalDishes(): string {
-        return JSON.parse(localStorage.getItem(APPSTORAGE.CAR)).length;
+        return localStorage.getItem(APPSTORAGE.CAR) ? JSON.parse(localStorage.getItem(APPSTORAGE.CAR)).length : '0';
     }
 }
