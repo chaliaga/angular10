@@ -3,17 +3,17 @@
         <ng-container *ngFor="let item of car">
             <div class="p-field p-grid">
                 <div class="p-col-12 p-mb-2 p-xl-4 p-md-3 p-m-lg-0 p-text-bold p-text-capitalize p-col-align-center">
-                    <label [for]=item.id>{{ item.name | addPrefix }}</label>
+                    <label [for]=item.id>{{ item.title | addPrefix }}</label>
                 </div>
                 <div class="p-col-12 p-mb-2 p-xl-2 p-md-3 p-m-lg-0">
                     <p-inputNumber [id]=item.id [step]="1" [showButtons]=true [min]="0"
                                    [max]="100"></p-inputNumber>
                 </div>
                 <div class="p-col-12 p-mb-2 p-xl-2 p-md-2 p-m-lg-0 p-text-center p-col-align-center">
-                    <label>Unit Price {{ item.price | currency}}</label>
+                    <label>Unit Price {{ item.pricePerServing | currency}}</label>
                 </div>
                 <div class="p-col-12 p-mb-2 p-xl-2 p-md-2 p-m-lg-0 p-text-center p-col-align-center">
-                    <label>Sub Total {{ item.price | currency}}</label>
+                    <label>Sub Total {{ item.pricePerServing | currency}}</label>
                 </div>
                 <div class="p-col-12 p-mb-2 p-xl-2 p-md-2 p-m-lg-0 p-text-left p-col-align-center">
                     <button icon="pi pi-trash" pRipple pButton type="button" label="Delete"

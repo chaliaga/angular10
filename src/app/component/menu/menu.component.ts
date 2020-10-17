@@ -1,23 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { Dish } from '../../interface/dish';
 import { APPSTORAGE, SPICY } from '../../util/constanst';
 import { Message } from 'primeng/api';
+import { MenuService } from './menu.service';
+import { Recipe, Dish } from '../../interface/recipe';
+
 
 @Component({
     selector: 'app-menu',
     templateUrl: './menu.component.html',
-    styleUrls: [ './menu.component.scss' ]
+    styleUrls: [ './menu.component.scss' ],
+    providers: [MenuService]
 })
 export class MenuComponent implements OnInit {
+    // dishesAll: Dish[];
     dishesAll: Dish[];
+    totalRecords: number;
     car: Dish[] = [];
     message: Message[] = [];
     isLoading = true;
 
-    constructor() {
+    constructor(public menuService: MenuService) {
     }
 
     ngOnInit(): void {
+        this.populateMenu();
+
+        /*
         this.dishesAll = [
             {
                 id: 1,
@@ -77,6 +85,7 @@ export class MenuComponent implements OnInit {
                 image: 'https://tipsparatuviaje.com/wp-content/uploads/2019/08/arroz-chaufa-peruano.jpg'
             }
         ];
+        */
         // this.isLoading = false;
     }
 
@@ -109,5 +118,14 @@ export class MenuComponent implements OnInit {
                 return 'pica-mucho';
             }
         }
+    }
+
+    private populateMenu(): void {
+        this.menuService.getRecipes().subscribe(data => this.getRecipes(data));
+    }
+
+    private getRecipes(data: Recipe): void {
+        this.totalRecords = data.totalResults;
+        this.dishesAll = data.results;
     }
 }

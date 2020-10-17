@@ -27,6 +27,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { ColorSpicyPipe } from './util/color-spicy.pipe';
 import { InputNumberModule } from 'primeng/inputnumber';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 Amplify.configure(awsconfig);
 
@@ -58,9 +59,10 @@ Amplify.configure(awsconfig);
         AmplifyUIAngularModule,
         MenubarModule,
         InputNumberModule,
-        ProgressSpinnerModule
+        ProgressSpinnerModule,
+        HttpClientModule
     ],
-    providers: [],
+    providers: [ HttpClient ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule {

@@ -1,6 +1,7 @@
 import { Ingredient } from './ingredient';
 export type InventoryType = 'OUTOFSTOCK' | 'INSTOCK' | 'LOWSTOCK';
 
+/*
 export interface Dish {
     id?: number;
     name: string;
@@ -14,3 +15,4 @@ export interface Dish {
     inventoryStatus?: InventoryType;
     image?: string;
 }
+*/

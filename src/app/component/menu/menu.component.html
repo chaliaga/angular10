@@ -1,5 +1,6 @@
 <div class="card">
-    <p-dataView #dv [value]="dishesAll" [rows]="4" filterBy="name" layout="grid" [loading]="isLoading">
+    <p-dataView #dv [value]="dishesAll" filterBy="name" layout="grid"
+                [loading]="isLoading" [paginator]="true" [rows]="9" [totalRecords]="totalRecords">
         <ng-template pTemplate="header">
             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
                 <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
@@ -9,18 +10,17 @@
             <div class="p-col-12">
                 <div class="product-list-item">
                     <div class="product-list-detail">
-                        <div class="product-name">{{dish.name}}</div>
-                        <p-rating [ngModel]="dish.rating" [readonly]="true"
+                        <div class="product-name">{{dish.title}}</div>
+                        <p-rating [ngModel]="dish.servings" [readonly]="true"
                                   [cancel]="false"></p-rating>
                         <i class="pi pi-tag product-category-icon"></i><span
-                            class="product-category">{{dish.category}}</span>
+                            class="product-category">{{dish.sourceName}}</span>
                     </div>
                     <div class="product-list-action">
-                        <span class="product-price">${{dish.price}}</span>
+                        <span class="product-price">${{dish.pricePerServing}}</span>
                         <p-button icon="pi pi-shopping-cart" label="Add to Cart"
-                                  [disabled]="dish.inventoryStatus === 'OUTOFSTOCK'"
                                   (click)="addDish(dish)"></p-button>
-                        <span [class]="'product-badge status-' + dish.inventoryStatus.toLowerCase()">{{dish.inventoryStatus}}</span>
+                        <!-- <span [class]="'product-badge status-' + dish.inventoryStatus.toLowerCase()">{{dish.inventoryStatus}}</span> -->
                     </div>
                 </div>
             </div>
@@ -29,30 +29,49 @@
             <div class="p-col-12 p-md-4">
                 <div class="product-grid-item card">
                     <div class="product-grid-item-content">
-                        <div class="product-name">{{dish.name}}</div>
+                        <div class="product-name">{{dish.title}}</div>
                         <div>
-                            <img [src]="dish.image" [alt]="dish.name" class="product-image" (load)="this.isLoading = false;"/>
+                            <img [src]="dish.image" [alt]="dish.name" class="product-image"
+                                 (load)="this.isLoading = false;"/>
                         </div>
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <span *ngFor="let currentCuisines of dish.cuisines">{{currentCuisines}}<br/></span>
+                                </td>
+                                <td>Servings:</td>
+                                <td class="p-text-left">{{ dish.servings }}</td>
+                            </tr>
+                            <tr>
+                                <td>Ready in</td>
+                                <td class="p-text-left">{{ dish.readyInMinutes }} minutes</td>
+                            </tr>
+                        </table>
+                        <!--
                         <div *ngFor="let currentIngredient of dish.ingredient">
                             <div class="product-description"> {{currentIngredient.name}} <i
                                     class="pi pi-filter product-category-icon"></i> {{currentIngredient.quantity}}
                             </div>
+                        </div>-->
+                        <div class="occasions">
+                            <h3>Ocasions</h3>
+                            <ul>
+                                <li *ngFor="let currentOccasions of dish.occasions">{{currentOccasions}}</li>
+                            </ul>
                         </div>
-                        <p-rating [ngModel]="dish.rating" [readonly]="true"
+                        <p-rating [ngModel]="dish.aggregateLikes/15" [readonly]="true" stars="10"
                                   [cancel]="false"></p-rating>
                     </div>
                     <div class="product-grid-item-bottom">
-                        <span class="product-price">${{dish.price}}</span>
+                        <span class="product-price">${{dish.pricePerServing}}</span>
 
                         <!-- With Swith on ts -->
-                        <span [ngClass]="getStyleSpicy(dish.spicy)">{{ dish.spicy }}</span>
+                        <!-- <span [ngClass]="getStyleSpicy(dish.spicy)">{{ dish.spicy }}</span> -->
 
                         <!-- With Pipe -->
-                        <span [innerHTML]="dish.spicy | colorSpicy"></span>
+                        <!-- <span [innerHTML]="dish.spicy | colorSpicy"></span> -->
 
-                        <p-button icon="pi pi-shopping-cart"
-                                  [disabled]="dish.inventoryStatus === 'OUTOFSTOCK'"
-                                  (click)="addDish(dish)"></p-button>
+                        <p-button icon="pi pi-shopping-cart" (click)="addDish(dish)"></p-button>
                     </div>
                 </div>
             </div>

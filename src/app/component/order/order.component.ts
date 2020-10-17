@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Dish } from '../../interface/dish';
 import { APPSTORAGE } from '../../util/constanst';
+import { Dish } from '../../interface/recipe';
 
 @Component({
     selector: 'app-order',
