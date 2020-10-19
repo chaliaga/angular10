@@ -10,3 +10,7 @@ export enum APPSTORAGE {
     CAR = 'car',
     CUSTOMER = 'user'
 }
+
+export const MicroserviceApp = {
+    BASE_ROOT: 'https://api.spoonacular.com/recipes/',
+};

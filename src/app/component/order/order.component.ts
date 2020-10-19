@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { APPSTORAGE } from '../../util/constanst';
 import { Dish } from '../../interface/recipe';
+import { MenuService } from '../menu/menu.service';
 
 @Component({
     selector: 'app-order',
@@ -8,16 +9,23 @@ import { Dish } from '../../interface/recipe';
     styleUrls: [ './order.component.scss' ]
 })
 export class OrderComponent implements OnInit {
-    car: Dish[];
-    constructor() {
+    cart: Dish[];
+    total: number;
+    quantity = 1;
+
+    constructor(public menuService: MenuService) {
     }
 
     ngOnInit(): void {
-        this.car = JSON.parse(localStorage.getItem(APPSTORAGE.CAR));
+        this.cart = this.menuService.cart;
     }
 
     deleteCurrentDish(id: number): void {
-       this.car.splice(this.car.findIndex(currentDish => currentDish.id === id), 1);
-       localStorage.setItem(APPSTORAGE.CAR,  JSON.stringify(this.car));
+        this.cart.splice(this.cart.findIndex(currentDish => currentDish.id === id), 1);
+        this.calculateTotal();
+    }
+
+    calculateTotal(): void {
+        this.total = this.menuService.calculateTotal();
     }
 }

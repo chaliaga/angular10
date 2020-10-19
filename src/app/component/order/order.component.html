@@ -1,13 +1,13 @@
 <div class="p-fluid">
     <div class="p-col-12">
-        <ng-container *ngFor="let item of car">
+        <ng-container *ngFor="let item of cart">
             <div class="p-field p-grid">
                 <div class="p-col-12 p-mb-2 p-xl-4 p-md-3 p-m-lg-0 p-text-bold p-text-capitalize p-col-align-center">
                     <label [for]=item.id>{{ item.title | addPrefix }}</label>
                 </div>
                 <div class="p-col-12 p-mb-2 p-xl-2 p-md-3 p-m-lg-0">
-                    <p-inputNumber [id]=item.id [step]="1" [showButtons]=true [min]="0"
-                                   [max]="100"></p-inputNumber>
+                    <p-inputNumber [id]=item.id [step]="1" [showButtons]=true [min]="1"
+                                   [max]="100" [(ngModel)]="quantity"></p-inputNumber>
                 </div>
                 <div class="p-col-12 p-mb-2 p-xl-2 p-md-2 p-m-lg-0 p-text-center p-col-align-center">
                     <label>Unit Price {{ item.pricePerServing | currency}}</label>
@@ -21,5 +21,9 @@
                 </div>
             </div>
         </ng-container>
+    </div>
+    <div class="p-col-12">
+        <button pButton type="button" label="Calculate Total" (click)="calculateTotal()"></button>
+        <h2>Sub Total: {{ total | currency}}</h2>
     </div>
 </div>
