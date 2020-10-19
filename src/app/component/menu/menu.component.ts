@@ -40,12 +40,11 @@ export class MenuComponent implements OnInit {
         }
     }
 
-    private populateMenu(): void {
-        this.menuService.getRecipes().subscribe(data => this.getRecipes(data));
-    }
-
-    private getRecipes(data: Recipe): void {
-        this.totalRecords = data.totalResults;
-        this.dishesAll = data.results;
+    public populateMenu(): void {
+        this.menuService.getRecipes()
+            .subscribe(data => {
+                this.totalRecords = data.totalResults;
+                this.dishesAll = data.results;
+            });
     }
 }

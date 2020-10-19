@@ -67,7 +67,7 @@ export interface Step {
     step: string;
     ingredients: Ingredient2[];
     equipment: Equipment[];
-    length: Length;
+    length?: Length;
 }
 
 export interface AnalyzedInstruction {
@@ -87,6 +87,8 @@ export interface Dish {
     weightWatcherSmartPoints: number;
     gaps: string;
     lowFodmap: boolean;
+    preparationMinutes?: number;
+    cookingMinutes?: number;
     aggregateLikes: number;
     spoonacularScore: number;
     healthScore: number;
