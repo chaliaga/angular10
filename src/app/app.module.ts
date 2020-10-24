@@ -28,6 +28,7 @@ import { ColorSpicyPipe } from './util/color-spicy.pipe';
 import { InputNumberModule } from 'primeng/inputnumber';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { PostComponent } from './component/post/post.component';
 
 Amplify.configure(awsconfig);
 
@@ -39,7 +40,8 @@ Amplify.configure(awsconfig);
         DishComponent,
         CountryComponent,
         PrefixPipe,
-        ColorSpicyPipe
+        ColorSpicyPipe,
+        PostComponent
     ],
     imports: [
         BrowserModule,
