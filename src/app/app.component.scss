@@ -16,6 +16,10 @@
     cursor: pointer;
   }
 
+  .p-menubar-end {
+    display: flex !important;
+  }
+
   .p-dropdown {
     width: 14rem;
     font-weight: normal;

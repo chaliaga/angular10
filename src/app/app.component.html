@@ -19,6 +19,14 @@
                                 </span>
                         </ng-template>
                         <ng-template pTemplate="end">
+                            <p class="p-mr-3" *ngIf="user">Hi, <span class="p-text-bold">{{ user.username }}</span>
+                            </p>
+                            <span class="p-overlay-badge p-text-right p-mr-4 shopping"
+                                  routerLink="" routerLinkActive="active">
+                                <i class="pi pi-shopping-cart product-category-icon"
+                                   style="font-size: 2em"></i>
+                                <span class="p-badge">{{ totalDishes() }}</span>
+                                </span>
                             <amplify-sign-out></amplify-sign-out>
                         </ng-template>
                     </p-menubar>
