@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './component/menu/menu.component';
 import { OrderComponent } from './component/order/order.component';
-import { DishComponent } from './component/dish/dish.component';
 import { DataViewModule } from 'primeng/dataview';
 import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
@@ -40,7 +39,6 @@ Amplify.configure(awsconfig);
         AppComponent,
         MenuComponent,
         OrderComponent,
-        DishComponent,
         CountryComponent,
         PrefixPipe,
         ColorSpicyPipe,
