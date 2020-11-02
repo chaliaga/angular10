@@ -31,6 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
             {
                 label: 'Menu',
                 items: [
+                    { label: 'Menu Material', icon: 'pi pi-eye', routerLink: ['/app-material'] },
                     { label: 'See Post', icon: 'pi pi-eye', routerLink: ['/app-post'] },
                     { label: 'See All', icon: 'pi pi-eye', routerLink: ['/app-menu'] },
                     { label: 'Quit' }

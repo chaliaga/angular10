@@ -9,7 +9,7 @@ import { DishComponent } from './component/dish/dish.component';
 import { DataViewModule } from 'primeng/dataview';
 import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PanelModule } from 'primeng/panel';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
@@ -26,9 +26,11 @@ import awsconfig from '../aws-exports';
 import { MenubarModule } from 'primeng/menubar';
 import { ColorSpicyPipe } from './util/color-spicy.pipe';
 import { InputNumberModule } from 'primeng/inputnumber';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './component/post/post.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MaterialAllModule } from './material-all.module';
 
 Amplify.configure(awsconfig);
 
@@ -62,7 +64,10 @@ Amplify.configure(awsconfig);
         MenubarModule,
         InputNumberModule,
         ProgressSpinnerModule,
-        HttpClientModule
+        HttpClientModule,
+        ReactiveFormsModule,
+        LayoutModule,
+        MaterialAllModule
     ],
     providers: [ HttpClient ],
     bootstrap: [ AppComponent ]
