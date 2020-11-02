@@ -31,6 +31,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './component/post/post.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialAllModule } from './material-all.module';
+import { MessageService } from 'primeng/api';
 
 Amplify.configure(awsconfig);
 
@@ -69,7 +70,7 @@ Amplify.configure(awsconfig);
         LayoutModule,
         MaterialAllModule
     ],
-    providers: [ HttpClient ],
+    providers: [ HttpClient, MessageService ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule {

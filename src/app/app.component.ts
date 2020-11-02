@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
-import { MenuItem } from 'primeng/api';
+import { AuthState, CognitoUserInterface, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import { MenuItem, Message } from 'primeng/api';
 import { slideInAnimation } from './route-animation';
 import { MenuService } from './component/menu/menu.service';
 
@@ -14,6 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
     user: CognitoUserInterface | undefined;
     authState: AuthState;
     items: MenuItem[];
+    message: Message[] = [];
 
     constructor(private ref: ChangeDetectorRef, public menuService: MenuService) {
     }

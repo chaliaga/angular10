@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SPICY } from '../../util/constanst';
-import { Message } from 'primeng/api';
 import { MenuService } from './menu.service';
-import { Recipe, Dish } from '../../interface/recipe';
+import { Dish } from '../../interface/recipe';
 
 
 @Component({
@@ -14,6 +13,8 @@ export class MenuComponent implements OnInit {
     dishesAll: Dish[];
     totalRecords: number;
     isLoading = true;
+    display = false;
+    detail: string;
 
     constructor(public menuService: MenuService) {
     }
@@ -46,5 +47,10 @@ export class MenuComponent implements OnInit {
                 this.totalRecords = data.totalResults;
                 this.dishesAll = data.results;
             });
+    }
+
+    viewDetails(dish: Dish): void {
+        this.detail = dish.summary;
+        this.display = true;
     }
 }

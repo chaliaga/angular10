@@ -20,7 +20,6 @@
                         <span class="product-price">${{dish.pricePerServing}}</span>
                         <p-button icon="pi pi-shopping-cart" label="Add to Cart"
                                   (click)="addDish(dish)"></p-button>
-                        <!-- <span [class]="'product-badge status-' + dish.inventoryStatus.toLowerCase()">{{dish.inventoryStatus}}</span> -->
                     </div>
                 </div>
             </div>
@@ -37,7 +36,8 @@
                         <table>
                             <tr>
                                 <td rowspan="2">
-                                    <span *ngFor="let currentCuisines of dish.cuisines">{{currentCuisines}}<br/></span>
+                                    <span *ngFor="let currentCuisines of dish.cuisines">{{currentCuisines}}
+                                        <br/></span>
                                 </td>
                                 <td>Servings:</td>
                                 <td class="p-text-left">{{ dish.servings }}</td>
@@ -47,12 +47,6 @@
                                 <td class="p-text-left">{{ dish.readyInMinutes }} minutes</td>
                             </tr>
                         </table>
-                        <!--
-                        <div *ngFor="let currentIngredient of dish.ingredient">
-                            <div class="product-description"> {{currentIngredient.name}} <i
-                                    class="pi pi-filter product-category-icon"></i> {{currentIngredient.quantity}}
-                            </div>
-                        </div>-->
                         <div class="occasions">
                             <h3>Ocasions</h3>
                             <ul>
@@ -64,13 +58,7 @@
                     </div>
                     <div class="product-grid-item-bottom">
                         <span class="product-price">${{dish.pricePerServing}}</span>
-
-                        <!-- With Swith on ts -->
-                        <!-- <span [ngClass]="getStyleSpicy(dish.spicy)">{{ dish.spicy }}</span> -->
-
-                        <!-- With Pipe -->
-                        <!-- <span [innerHTML]="dish.spicy | colorSpicy"></span> -->
-
+                        <p-button icon="pi pi-list" (click)="viewDetails(dish)" label="Details"></p-button>
                         <p-button icon="pi pi-shopping-cart" (click)="addDish(dish)"></p-button>
                     </div>
                 </div>
@@ -78,3 +66,11 @@
         </ng-template>
     </p-dataView>
 </div>
+
+<p-dialog header="Header" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+    <p class="p-m-0" [innerHTML]="detail"></p>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="display=false" label="Yes" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>

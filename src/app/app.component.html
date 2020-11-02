@@ -23,7 +23,7 @@
                             </p>
                             <span class="p-overlay-badge p-text-right p-mr-4 shopping"
                                   routerLink="" routerLinkActive="active">
-                                <i class="pi pi-shopping-cart product-category-icon"
+                                <i class="pi pi-user product-category-icon"
                                    style="font-size: 2em"></i>
                                 <span class="p-badge">{{ totalDishes() }}</span>
                                 </span>
@@ -32,9 +32,7 @@
                     </p-menubar>
                 </div>
                 <div class="p-col-12">
-                    <!--
-                    <p-messages [(value)]="message" [enableService]="false"></p-messages>
-                    -->
+                    <p-messages [enableService]="true"></p-messages>
                 </div>
                 <div class="p-col-12"
                      [@routeAnimations]="o && o.activatedRouteData && o.activatedRouteData['animation']">
