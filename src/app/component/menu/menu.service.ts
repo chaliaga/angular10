@@ -51,6 +51,7 @@ export class MenuService {
     }
 
     public addToCart(dishSelected: Dish): void {
+        this.messageService.clear();
         if (dishSelected && !this.isDishAlreadySelected(dishSelected.id)) {
             this.messageService.add({severity: 'success', summary: dishSelected.title, detail: 'Successfully Added'});
             this._cart.push(dishSelected);

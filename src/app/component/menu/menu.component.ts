@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SPICY } from '../../util/constanst';
 import { MenuService } from './menu.service';
-import { Dish } from '../../interface/recipe';
-
+import { AnalyzedInstruction, Dish } from '../../interface/recipe';
 
 @Component({
     selector: 'app-menu',
@@ -13,8 +12,10 @@ export class MenuComponent implements OnInit {
     dishesAll: Dish[];
     totalRecords: number;
     isLoading = true;
-    display = false;
-    detail: string;
+    displayDetail = false;
+    detailRecipe: string;
+    titleRecipe: string;
+    dishInstructions: AnalyzedInstruction[];
 
     constructor(public menuService: MenuService) {
     }
@@ -50,7 +51,17 @@ export class MenuComponent implements OnInit {
     }
 
     viewDetails(dish: Dish): void {
-        this.detail = dish.summary;
-        this.display = true;
+        this.detailRecipe = dish.summary;
+        this.titleRecipe = dish.title;
+        this.dishInstructions = dish.analyzedInstructions;
+        this.displayDetail = true;
+    }
+
+    getImageEquipment(imageURL: string): string {
+        return 'https://spoonacular.com/cdn/equipment_100x100/' + imageURL;
+    }
+
+    getImageIngredient(imageURL: string): string {
+        return 'https://spoonacular.com/cdn/ingredients_100x100/' + imageURL;
     }
 }

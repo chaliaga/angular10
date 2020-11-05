@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { APPSTORAGE } from '../../util/constanst';
 import { Dish } from '../../interface/recipe';
-import { MenuService } from '../menu/menu.service';
+import { MenuService } from '../../component/menu/menu.service';
+import { MessageService } from 'primeng/api';
+
 
 @Component({
     selector: 'app-order',
@@ -11,12 +12,13 @@ import { MenuService } from '../menu/menu.service';
 export class OrderComponent implements OnInit {
     cart: Dish[];
     total: number;
-    quantity = 1;
+    quantityDefault = 1;
 
-    constructor(public menuService: MenuService) {
+    constructor(public menuService: MenuService, public messageService: MessageService) {
     }
 
     ngOnInit(): void {
+        this.messageService.clear();
         this.cart = this.menuService.cart;
     }
 

@@ -1,5 +1,5 @@
-import { Dish } from '../interface/dish';
 import { Customer } from '../interface/customer';
+import { Dish } from '../interface/recipe';
 
 export class Order {
     dish: Dish;

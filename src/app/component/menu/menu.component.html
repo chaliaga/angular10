@@ -58,7 +58,8 @@
                     </div>
                     <div class="product-grid-item-bottom">
                         <span class="product-price">${{dish.pricePerServing}}</span>
-                        <p-button icon="pi pi-list" (click)="viewDetails(dish)" label="Details"></p-button>
+                        <p-button icon="pi pi-list" (click)="viewDetails(dish)"
+                                  label="Details"></p-button>
                         <p-button icon="pi pi-shopping-cart" (click)="addDish(dish)"></p-button>
                     </div>
                 </div>
@@ -67,10 +68,33 @@
     </p-dataView>
 </div>
 
-<p-dialog header="Header" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+<p-dialog [header]="titleRecipe" [(visible)]="displayDetail" [modal]="true"
+          [style]="{width: '50vw'}" [baseZIndex]="10000"
           [draggable]="false" [resizable]="false">
-    <p class="p-m-0" [innerHTML]="detail"></p>
+    <p class="p-m-0" [innerHTML]="detailRecipe"></p>
+    <h3>Steps</h3>
+    <div *ngFor="let currentInstruction of dishInstructions">
+        <span style="color:red;">{{currentInstruction.name}}</span>
+        <div *ngFor="let currentStep of currentInstruction.steps">
+            Step: {{currentStep.number}}<br/>
+            Description: {{currentStep.step}}<br/>
+            Length: {{currentStep.length | json}}<br/>
+            <h4>Equipment</h4>
+            <ul class="equipment">
+                <li *ngFor="let currentEquipment of currentStep.equipment">
+                    <img [src]=getImageEquipment(currentEquipment.image) [alt]="currentEquipment.name" [title]="currentEquipment.name"/>
+                </li>
+            </ul>
+            <h4>Ingredients</h4>
+            <ul class="ingredient">
+                <li *ngFor="let currentIngredient of currentStep.ingredients">
+                    <img [src]=getImageIngredient(currentIngredient.image) [alt]="currentIngredient.name" [title]="currentIngredient.name"/>
+                </li>
+            </ul>
+        </div>
+    </div>
     <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="display=false" label="Yes" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-check" (click)="displayDetail=false" label="Yes"
+                  styleClass="p-button-text"></p-button>
     </ng-template>
 </p-dialog>

@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './component/menu/menu.component';
-import { OrderComponent } from './component/order/order.component';
 import { DataViewModule } from 'primeng/dataview';
 import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
@@ -38,7 +37,6 @@ Amplify.configure(awsconfig);
     declarations: [
         AppComponent,
         MenuComponent,
-        OrderComponent,
         CountryComponent,
         PrefixPipe,
         ColorSpicyPipe,
@@ -69,6 +67,9 @@ Amplify.configure(awsconfig);
         MaterialAllModule
     ],
     providers: [ HttpClient, MessageService ],
+    exports: [
+        PrefixPipe
+    ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule {

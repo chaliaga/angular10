@@ -3,11 +3,11 @@
         <ng-container *ngFor="let item of cart">
             <div class="p-field p-grid">
                 <div class="p-col-12 p-mb-2 p-xl-4 p-md-3 p-m-lg-0 p-text-bold p-text-capitalize p-col-align-center">
-                    <label [for]=item.id>{{ item.title | addPrefix }}</label>
+                    <label [for]=item.id>{{ item.title }}</label>
                 </div>
                 <div class="p-col-12 p-mb-2 p-xl-2 p-md-3 p-m-lg-0">
                     <p-inputNumber [id]=item.id [step]="1" [showButtons]=true [min]="1"
-                                   [max]="100" [(ngModel)]="quantity"></p-inputNumber>
+                                   [max]="100" [(ngModel)]="quantityDefault"></p-inputNumber>
                 </div>
                 <div class="p-col-12 p-mb-2 p-xl-2 p-md-2 p-m-lg-0 p-text-center p-col-align-center">
                     <label>Unit Price {{ item.pricePerServing | currency}}</label>
