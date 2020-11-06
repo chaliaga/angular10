@@ -1,4 +1,82 @@
 # this is an auto generated file. This will be overwritten
+mutation CreateCategory(
+  $input: CreateCategoryInput!
+  $condition: ModelCategoryConditionInput
+) {
+  createCategory(input: $input, condition: $condition) {
+    id
+    name
+    dishes {
+      items {
+        id
+        name
+        price
+        imageURL
+        rating
+        description
+        portions
+        readyMinutes
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCategory(
+  $input: UpdateCategoryInput!
+  $condition: ModelCategoryConditionInput
+) {
+  updateCategory(input: $input, condition: $condition) {
+    id
+    name
+    dishes {
+      items {
+        id
+        name
+        price
+        imageURL
+        rating
+        description
+        portions
+        readyMinutes
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCategory(
+  $input: DeleteCategoryInput!
+  $condition: ModelCategoryConditionInput
+) {
+  deleteCategory(input: $input, condition: $condition) {
+    id
+    name
+    dishes {
+      items {
+        id
+        name
+        price
+        imageURL
+        rating
+        description
+        portions
+        readyMinutes
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateDish(
   $input: CreateDishInput!
   $condition: ModelDishConditionInput
@@ -6,11 +84,21 @@ mutation CreateDish(
   createDish(input: $input, condition: $condition) {
     id
     name
-    category
+    category {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     price
     imageURL
     rating
     description
+    portions
+    readyMinutes
     createdAt
     updatedAt
   }
@@ -22,11 +110,21 @@ mutation UpdateDish(
   updateDish(input: $input, condition: $condition) {
     id
     name
-    category
+    category {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     price
     imageURL
     rating
     description
+    portions
+    readyMinutes
     createdAt
     updatedAt
   }
@@ -38,11 +136,21 @@ mutation DeleteDish(
   deleteDish(input: $input, condition: $condition) {
     id
     name
-    category
+    category {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     price
     imageURL
     rating
     description
+    portions
+    readyMinutes
     createdAt
     updatedAt
   }

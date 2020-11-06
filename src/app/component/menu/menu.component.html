@@ -10,14 +10,14 @@
             <div class="p-col-12">
                 <div class="product-list-item">
                     <div class="product-list-detail">
-                        <div class="product-name">{{dish.title}}</div>
-                        <p-rating [ngModel]="dish.servings" [readonly]="true"
+                        <div class="product-name">{{dish.name}}</div>
+                        <p-rating [ngModel]="dish.rating" [readonly]="true"
                                   [cancel]="false"></p-rating>
                         <i class="pi pi-tag product-category-icon"></i><span
-                            class="product-category">{{dish.sourceName}}</span>
+                            class="product-category">{{dish.category.name}}</span>
                     </div>
                     <div class="product-list-action">
-                        <span class="product-price">${{dish.pricePerServing}}</span>
+                        <span class="product-price">${{dish.price}}</span>
                         <p-button icon="pi pi-shopping-cart" label="Add to Cart"
                                   (click)="addDish(dish)"></p-button>
                     </div>
@@ -28,36 +28,26 @@
             <div class="p-col-12 p-md-4">
                 <div class="product-grid-item card">
                     <div class="product-grid-item-content">
-                        <div class="product-name">{{dish.title}}</div>
+                        <div class="product-name">{{dish.name}}</div>
                         <div>
-                            <img [src]="dish.image" [alt]="dish.name" class="product-image"
+                            <img [src]="dish.imageURL" width="100px" [alt]="dish.name" class="product-image"
                                  (load)="this.isLoading = false;"/>
                         </div>
                         <table>
                             <tr>
-                                <td rowspan="2">
-                                    <span *ngFor="let currentCuisines of dish.cuisines">{{currentCuisines}}
-                                        <br/></span>
-                                </td>
                                 <td>Servings:</td>
-                                <td class="p-text-left">{{ dish.servings }}</td>
+                                <td class="p-text-left">{{ dish.portions }}</td>
                             </tr>
                             <tr>
                                 <td>Ready in</td>
-                                <td class="p-text-left">{{ dish.readyInMinutes }} minutes</td>
+                                <td class="p-text-left">{{ dish.readyMinutes }} minutes</td>
                             </tr>
                         </table>
-                        <div class="occasions">
-                            <h3>Ocasions</h3>
-                            <ul>
-                                <li *ngFor="let currentOccasions of dish.occasions">{{currentOccasions}}</li>
-                            </ul>
-                        </div>
-                        <p-rating [ngModel]="dish.aggregateLikes/15" [readonly]="true" stars="10"
+                        <p-rating [ngModel]="dish.rating" [readonly]="true" stars="10"
                                   [cancel]="false"></p-rating>
                     </div>
                     <div class="product-grid-item-bottom">
-                        <span class="product-price">${{dish.pricePerServing}}</span>
+                        <span class="product-price">${{dish.price}}</span>
                         <p-button icon="pi pi-list" (click)="viewDetails(dish)"
                                   label="Details"></p-button>
                         <p-button icon="pi pi-shopping-cart" (click)="addDish(dish)"></p-button>
@@ -67,34 +57,12 @@
         </ng-template>
     </p-dataView>
 </div>
-
-<p-dialog [header]="titleRecipe" [(visible)]="displayDetail" [modal]="true"
+<p-dialog [header]="titleName" [(visible)]="displayDetail" [modal]="true"
           [style]="{width: '50vw'}" [baseZIndex]="10000"
           [draggable]="false" [resizable]="false">
     <p class="p-m-0" [innerHTML]="detailRecipe"></p>
-    <h3>Steps</h3>
-    <div *ngFor="let currentInstruction of dishInstructions">
-        <span style="color:red;">{{currentInstruction.name}}</span>
-        <div *ngFor="let currentStep of currentInstruction.steps">
-            Step: {{currentStep.number}}<br/>
-            Description: {{currentStep.step}}<br/>
-            Length: {{currentStep.length | json}}<br/>
-            <h4>Equipment</h4>
-            <ul class="equipment">
-                <li *ngFor="let currentEquipment of currentStep.equipment">
-                    <img [src]=getImageEquipment(currentEquipment.image) [alt]="currentEquipment.name" [title]="currentEquipment.name"/>
-                </li>
-            </ul>
-            <h4>Ingredients</h4>
-            <ul class="ingredient">
-                <li *ngFor="let currentIngredient of currentStep.ingredients">
-                    <img [src]=getImageIngredient(currentIngredient.image) [alt]="currentIngredient.name" [title]="currentIngredient.name"/>
-                </li>
-            </ul>
-        </div>
-    </div>
     <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="displayDetail=false" label="Yes"
+        <p-button icon="pi pi-check" (click)="displayDetail=false" label="Ok"
                   styleClass="p-button-text"></p-button>
     </ng-template>
 </p-dialog>

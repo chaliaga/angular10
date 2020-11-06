@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Dish } from '../../interface/recipe';
 import { MenuService } from '../../component/menu/menu.service';
 import { MessageService } from 'primeng/api';
+import { Dish } from '../../interface/dish';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class OrderComponent implements OnInit {
         this.cart = this.menuService.cart;
     }
 
-    deleteCurrentDish(id: number): void {
+    deleteCurrentDish(id: string): void {
         this.cart.splice(this.cart.findIndex(currentDish => currentDish.id === id), 1);
         this.calculateTotal();
     }

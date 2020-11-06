@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SPICY } from '../../util/constanst';
 import { MenuService } from './menu.service';
-import { AnalyzedInstruction, Dish } from '../../interface/recipe';
+import { APIService, ModelCategoryFilterInput, ModelDishFilterInput } from '../../API.service';
+import { Dish } from '../../interface/dish';
 
 @Component({
     selector: 'app-menu',
@@ -9,25 +9,34 @@ import { AnalyzedInstruction, Dish } from '../../interface/recipe';
     styleUrls: [ './menu.component.scss' ]
 })
 export class MenuComponent implements OnInit {
-    dishesAll: Dish[];
-    totalRecords: number;
+    dishesAll: any;
+    totalRecords = 0;
     isLoading = true;
-    displayDetail = false;
     detailRecipe: string;
-    titleRecipe: string;
-    dishInstructions: AnalyzedInstruction[];
+    titleName: string;
+    displayDetail = false;
+    queryCat: ModelDishFilterInput;
 
-    constructor(public menuService: MenuService) {
+    constructor(public menuService: MenuService, public api: APIService) {
     }
 
-    ngOnInit(): void {
-        this.populateMenu();
+    async ngOnInit(): Promise<void> {
+        /*
+        this.queryCat = {
+            category: {
+                eq: 'Comida Marina'
+            }
+        };*/
+        const result = await this.api.ListDishs();
+        this.dishesAll = result.items;
+        this.totalRecords = result.items.length;
     }
 
     public addDish(dishSelected: Dish): void {
         this.menuService.addToCart(dishSelected);
     }
 
+    /*
     public getStyleSpicy(spicy: SPICY): string {
         switch (spicy) {
             case SPICY.NOPICA: {
@@ -40,28 +49,11 @@ export class MenuComponent implements OnInit {
                 return 'pica-mucho';
             }
         }
-    }
-
-    public populateMenu(): void {
-        this.menuService.getRecipes()
-            .subscribe(data => {
-                this.totalRecords = data.totalResults;
-                this.dishesAll = data.results;
-            });
-    }
+    }*/
 
     viewDetails(dish: Dish): void {
-        this.detailRecipe = dish.summary;
-        this.titleRecipe = dish.title;
-        this.dishInstructions = dish.analyzedInstructions;
+        this.detailRecipe = dish.description;
+        this.titleName = dish.name;
         this.displayDetail = true;
-    }
-
-    getImageEquipment(imageURL: string): string {
-        return 'https://spoonacular.com/cdn/equipment_100x100/' + imageURL;
-    }
-
-    getImageIngredient(imageURL: string): string {
-        return 'https://spoonacular.com/cdn/ingredients_100x100/' + imageURL;
     }
 }

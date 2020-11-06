@@ -1,13 +1,92 @@
 # this is an auto generated file. This will be overwritten
+subscription OnCreateCategory {
+  onCreateCategory {
+    id
+    name
+    dishes {
+      items {
+        id
+        name
+        price
+        imageURL
+        rating
+        description
+        portions
+        readyMinutes
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCategory {
+  onUpdateCategory {
+    id
+    name
+    dishes {
+      items {
+        id
+        name
+        price
+        imageURL
+        rating
+        description
+        portions
+        readyMinutes
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCategory {
+  onDeleteCategory {
+    id
+    name
+    dishes {
+      items {
+        id
+        name
+        price
+        imageURL
+        rating
+        description
+        portions
+        readyMinutes
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
 subscription OnCreateDish {
   onCreateDish {
     id
     name
-    category
+    category {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     price
     imageURL
     rating
     description
+    portions
+    readyMinutes
     createdAt
     updatedAt
   }
@@ -16,11 +95,21 @@ subscription OnUpdateDish {
   onUpdateDish {
     id
     name
-    category
+    category {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     price
     imageURL
     rating
     description
+    portions
+    readyMinutes
     createdAt
     updatedAt
   }
@@ -29,11 +118,21 @@ subscription OnDeleteDish {
   onDeleteDish {
     id
     name
-    category
+    category {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     price
     imageURL
     rating
     description
+    portions
+    readyMinutes
     createdAt
     updatedAt
   }
