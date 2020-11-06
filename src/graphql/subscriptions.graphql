@@ -1,0 +1,40 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateDish {
+  onCreateDish {
+    id
+    name
+    category
+    price
+    imageURL
+    rating
+    description
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateDish {
+  onUpdateDish {
+    id
+    name
+    category
+    price
+    imageURL
+    rating
+    description
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteDish {
+  onDeleteDish {
+    id
+    name
+    category
+    price
+    imageURL
+    rating
+    description
+    createdAt
+    updatedAt
+  }
+}

@@ -1,0 +1,9 @@
+type Dish @model {
+    id: ID!
+    name: String!
+    category: String,
+    price: String!
+    imageURL: String,
+    rating: Int,
+    description: String
+}

@@ -1,0 +1,34 @@
+# this is an auto generated file. This will be overwritten
+query GetDish($id: ID!) {
+  getDish(id: $id) {
+    id
+    name
+    category
+    price
+    imageURL
+    rating
+    description
+    createdAt
+    updatedAt
+  }
+}
+query ListDishs(
+  $filter: ModelDishFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDishs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      category
+      price
+      imageURL
+      rating
+      description
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

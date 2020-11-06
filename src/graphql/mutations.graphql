@@ -1,0 +1,49 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateDish(
+  $input: CreateDishInput!
+  $condition: ModelDishConditionInput
+) {
+  createDish(input: $input, condition: $condition) {
+    id
+    name
+    category
+    price
+    imageURL
+    rating
+    description
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateDish(
+  $input: UpdateDishInput!
+  $condition: ModelDishConditionInput
+) {
+  updateDish(input: $input, condition: $condition) {
+    id
+    name
+    category
+    price
+    imageURL
+    rating
+    description
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteDish(
+  $input: DeleteDishInput!
+  $condition: ModelDishConditionInput
+) {
+  deleteDish(input: $input, condition: $condition) {
+    id
+    name
+    category
+    price
+    imageURL
+    rating
+    description
+    createdAt
+    updatedAt
+  }
+}

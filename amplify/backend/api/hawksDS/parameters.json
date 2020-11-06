@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "hawksDS",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authtestappe833bcc1",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
