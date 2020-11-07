@@ -9,6 +9,7 @@ const routes: Routes = [
     { path: 'app-order', loadChildren: () => import('./module/order/order.module').then(m => m.OrderModule), data: { animation: 'Order' }},
     { path: 'app-post', component: PostComponent, data: { animation: 'Order' } },
     { path: 'app-material', loadChildren: () => import('./material/material.module').then(m => m.MaterialModule)},
+    { path: 'app-admin', loadChildren: () => import('./module/admin/admin.module').then(m => m.AdminModule)},
     { path: '**', redirectTo: 'app-menu'}
 ];
 

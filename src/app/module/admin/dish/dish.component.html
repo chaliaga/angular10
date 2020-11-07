@@ -1,0 +1,208 @@
+<p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+                (click)="openNew()"></button>
+        <button pButton pRipple [label]="'Delete'" icon="pi pi-trash" class="p-button-danger"
+                (click)="deleteSelectedDish()"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+    </ng-template>
+</p-toolbar>
+<p-table #dt1 [value]="dishes" dataKey="id" editMode="row" [(selection)]="selectedDishes"
+         [rows]="10" [paginator]="true"
+         [rowHover]="true" dataKey="id" [globalFilterFields]="['name']">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            <h2 class="p-m-0">Manage Dishes</h2>
+            <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text"
+                           (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                           placeholder="Search..."/>
+                </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 3rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Ready</th>
+            <th>Portions</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Description</th>
+            <th style="width:8rem"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-dish let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="dish">
+            <td>
+                <p-tableCheckbox [value]="dish"></p-tableCheckbox>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        {{dish.id}}
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{dish.id}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="dish.name" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{dish.name}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="dish.categoryID" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{dish.categoryID}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="dish.imageURL" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        <img [src]="dish.imageURL" width="100px" [alt]="dish.name"
+                             class="product-image"/>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="dish.readyMinutes" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{dish.readyMinutes}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="dish.portions" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{dish.portions}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="dish.price" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{dish.price}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="dish.rating" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{dish.rating}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <textarea [(ngModel)]="dish.description" required></textarea>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{dish.description}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td style="text-align:center">
+                <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow
+                        icon="pi pi-pencil" (click)="onRowEditInit(dish)"
+                        class="p-button-rounded p-button-text"></button>
+                <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow
+                        icon="pi pi-check" (click)="onRowEditSave(dish)"
+                        class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+                <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow
+                        icon="pi pi-times" (click)="onRowEditCancel(dish, ri)"
+                        class="p-button-rounded p-button-text p-button-danger"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            In total there are {{dishes ? dishes.length : 0 }} dishes.
+        </div>
+    </ng-template>
+</p-table>
+<p-dialog [(visible)]="dishDialog" [style]="{width: '450px'}" header="Dish Details"
+          [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="name">Name</label>
+            <input type="text" pInputText id="name" [(ngModel)]="dish.name" required autofocus/>
+            <small class="p-invalid" *ngIf="submitted && !dish.name">Name is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="category">Category</label>
+            <input type="text" pInputText id="category" [(ngModel)]="dish.categoryID" required autofocus/>
+            <small class="p-invalid" *ngIf="submitted && !dish.categoryID">Category is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="price">Price</label>
+            <p-inputNumber id="price" [(ngModel)]="dish.price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+            <small class="p-invalid" *ngIf="submitted && !dish.price">Price is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="image">ImageURL</label>
+            <input type="text" pInputText id="image" [(ngModel)]="dish.imageURL" required autofocus/>
+        </div>
+        <div class="p-field">
+            <label for="rating">Rating</label>
+            <p-inputNumber id="rating" [step]="1" [(ngModel)]="dish.rating" [showButtons]=true [min]="1"
+                           [max]="10"></p-inputNumber>
+        </div>
+        <div class="p-field">
+            <label for="description">Description</label>
+            <textarea id="description" pInputTextarea [(ngModel)]="dish.description" required rows="10" cols="25"></textarea>
+        </div>
+        <div class="p-field">
+            <label for="price">Portions</label>
+            <p-inputNumber id="portions" [step]="1" [(ngModel)]="dish.portions" [showButtons]=true [min]="1"
+                           [max]="100"></p-inputNumber>
+        </div>
+        <div class="p-field">
+            <label for="ready">Ready in Minutes</label>
+            <p-inputNumber id="ready"  [step]="1" [(ngModel)]="dish.readyMinutes" [showButtons]=true [min]="1"
+                           [max]="60"></p-inputNumber>
+        </div>
+
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+                (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+                (click)="saveDish()"></button>
+    </ng-template>
+</p-dialog>

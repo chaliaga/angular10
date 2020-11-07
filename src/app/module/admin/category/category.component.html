@@ -1,0 +1,98 @@
+<p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+                (click)="openNew()"></button>
+        <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger"
+                (click)="deleteSelectedCategory()"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+    </ng-template>
+</p-toolbar>
+<p-table #dt [value]="categories" dataKey="id" editMode="row" [(selection)]="selectedCategories"
+         [rows]="10" [paginator]="true"
+         [rowHover]="true" dataKey="id" [globalFilterFields]="['name']">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            <h2 class="p-m-0">Manage Category Food</h2>
+            <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text"
+                           (input)="dt.filterGlobal($event.target.value, 'contains')"
+                           placeholder="Search..."/>
+                </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 3rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th>Id</th>
+            <th>Name</th>
+            <th style="width:8rem"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-category let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="category">
+            <td>
+                <p-tableCheckbox [value]="category"></p-tableCheckbox>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        {{category.id}}
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{category.id}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="category.name" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{category.name}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td style="text-align:center">
+                <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow
+                        icon="pi pi-pencil" (click)="onRowEditInit(category)"
+                        class="p-button-rounded p-button-text"></button>
+                <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow
+                        icon="pi pi-check" (click)="onRowEditSave(category)"
+                        class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+                <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow
+                        icon="pi pi-times" (click)="onRowEditCancel(category, ri)"
+                        class="p-button-rounded p-button-text p-button-danger"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            In total there are {{categories ? categories.length : 0 }} categories.
+        </div>
+    </ng-template>
+</p-table>
+
+
+<p-dialog [(visible)]="categoryDialog" [style]="{width: '450px'}" header="Category Details"
+          [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="name">Name</label>
+            <input type="text" pInputText id="name" [(ngModel)]="category.name" required autofocus/>
+            <small class="p-invalid" *ngIf="submitted && !category.name">Name is required.</small>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+                (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+                (click)="saveCategory()"></button>
+    </ng-template>
+</p-dialog>

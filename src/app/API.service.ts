@@ -68,17 +68,18 @@ export type DeleteCategoryInput = {
 export type CreateDishInput = {
   id?: string | null;
   name: string;
+  categoryID: string;
   price: string;
   imageURL?: string | null;
   rating?: number | null;
   description?: string | null;
   portions?: number | null;
   readyMinutes?: number | null;
-  dishCategoryId?: string | null;
 };
 
 export type ModelDishConditionInput = {
   name?: ModelStringInput | null;
+  categoryID?: ModelIDInput | null;
   price?: ModelStringInput | null;
   imageURL?: ModelStringInput | null;
   rating?: ModelIntInput | null;
@@ -88,42 +89,6 @@ export type ModelDishConditionInput = {
   and?: Array<ModelDishConditionInput | null> | null;
   or?: Array<ModelDishConditionInput | null> | null;
   not?: ModelDishConditionInput | null;
-};
-
-export type ModelIntInput = {
-  ne?: number | null;
-  eq?: number | null;
-  le?: number | null;
-  lt?: number | null;
-  ge?: number | null;
-  gt?: number | null;
-  between?: Array<number | null> | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-};
-
-export type UpdateDishInput = {
-  id: string;
-  name?: string | null;
-  price?: string | null;
-  imageURL?: string | null;
-  rating?: number | null;
-  description?: string | null;
-  portions?: number | null;
-  readyMinutes?: number | null;
-  dishCategoryId?: string | null;
-};
-
-export type DeleteDishInput = {
-  id?: string | null;
-};
-
-export type ModelCategoryFilterInput = {
-  id?: ModelIDInput | null;
-  name?: ModelStringInput | null;
-  and?: Array<ModelCategoryFilterInput | null> | null;
-  or?: Array<ModelCategoryFilterInput | null> | null;
-  not?: ModelCategoryFilterInput | null;
 };
 
 export type ModelIDInput = {
@@ -142,9 +107,46 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null;
 };
 
+export type ModelIntInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  between?: Array<number | null> | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+};
+
+export type UpdateDishInput = {
+  id: string;
+  name?: string | null;
+  categoryID?: string | null;
+  price?: string | null;
+  imageURL?: string | null;
+  rating?: number | null;
+  description?: string | null;
+  portions?: number | null;
+  readyMinutes?: number | null;
+};
+
+export type DeleteDishInput = {
+  id?: string | null;
+};
+
+export type ModelCategoryFilterInput = {
+  id?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  and?: Array<ModelCategoryFilterInput | null> | null;
+  or?: Array<ModelCategoryFilterInput | null> | null;
+  not?: ModelCategoryFilterInput | null;
+};
+
 export type ModelDishFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
+  categoryID?: ModelIDInput | null;
   price?: ModelStringInput | null;
   imageURL?: ModelStringInput | null;
   rating?: ModelIntInput | null;
@@ -166,6 +168,7 @@ export type CreateCategoryMutation = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryID: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -191,6 +194,7 @@ export type UpdateCategoryMutation = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryID: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -216,6 +220,7 @@ export type DeleteCategoryMutation = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryID: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -235,17 +240,7 @@ export type CreateDishMutation = {
   __typename: "Dish";
   id: string;
   name: string;
-  category: {
-    __typename: "Category";
-    id: string;
-    name: string;
-    dishes: {
-      __typename: "ModelDishConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  categoryID: string;
   price: string;
   imageURL: string | null;
   rating: number | null;
@@ -260,17 +255,7 @@ export type UpdateDishMutation = {
   __typename: "Dish";
   id: string;
   name: string;
-  category: {
-    __typename: "Category";
-    id: string;
-    name: string;
-    dishes: {
-      __typename: "ModelDishConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  categoryID: string;
   price: string;
   imageURL: string | null;
   rating: number | null;
@@ -285,17 +270,7 @@ export type DeleteDishMutation = {
   __typename: "Dish";
   id: string;
   name: string;
-  category: {
-    __typename: "Category";
-    id: string;
-    name: string;
-    dishes: {
-      __typename: "ModelDishConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  categoryID: string;
   price: string;
   imageURL: string | null;
   rating: number | null;
@@ -316,6 +291,7 @@ export type GetCategoryQuery = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryID: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -351,17 +327,7 @@ export type GetDishQuery = {
   __typename: "Dish";
   id: string;
   name: string;
-  category: {
-    __typename: "Category";
-    id: string;
-    name: string;
-    dishes: {
-      __typename: "ModelDishConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  categoryID: string;
   price: string;
   imageURL: string | null;
   rating: number | null;
@@ -378,13 +344,7 @@ export type ListDishsQuery = {
     __typename: "Dish";
     id: string;
     name: string;
-    category: {
-      __typename: "Category";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
+    categoryID: string;
     price: string;
     imageURL: string | null;
     rating: number | null;
@@ -407,6 +367,7 @@ export type OnCreateCategorySubscription = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryID: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -432,6 +393,7 @@ export type OnUpdateCategorySubscription = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryID: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -457,6 +419,7 @@ export type OnDeleteCategorySubscription = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryID: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -476,17 +439,7 @@ export type OnCreateDishSubscription = {
   __typename: "Dish";
   id: string;
   name: string;
-  category: {
-    __typename: "Category";
-    id: string;
-    name: string;
-    dishes: {
-      __typename: "ModelDishConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  categoryID: string;
   price: string;
   imageURL: string | null;
   rating: number | null;
@@ -501,17 +454,7 @@ export type OnUpdateDishSubscription = {
   __typename: "Dish";
   id: string;
   name: string;
-  category: {
-    __typename: "Category";
-    id: string;
-    name: string;
-    dishes: {
-      __typename: "ModelDishConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  categoryID: string;
   price: string;
   imageURL: string | null;
   rating: number | null;
@@ -526,17 +469,7 @@ export type OnDeleteDishSubscription = {
   __typename: "Dish";
   id: string;
   name: string;
-  category: {
-    __typename: "Category";
-    id: string;
-    name: string;
-    dishes: {
-      __typename: "ModelDishConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  categoryID: string;
   price: string;
   imageURL: string | null;
   rating: number | null;
@@ -566,6 +499,7 @@ export class APIService {
               __typename
               id
               name
+              categoryID
               price
               imageURL
               rating
@@ -607,6 +541,7 @@ export class APIService {
               __typename
               id
               name
+              categoryID
               price
               imageURL
               rating
@@ -648,6 +583,7 @@ export class APIService {
               __typename
               id
               name
+              categoryID
               price
               imageURL
               rating
@@ -683,17 +619,7 @@ export class APIService {
           __typename
           id
           name
-          category {
-            __typename
-            id
-            name
-            dishes {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
+          categoryID
           price
           imageURL
           rating
@@ -724,17 +650,7 @@ export class APIService {
           __typename
           id
           name
-          category {
-            __typename
-            id
-            name
-            dishes {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
+          categoryID
           price
           imageURL
           rating
@@ -765,17 +681,7 @@ export class APIService {
           __typename
           id
           name
-          category {
-            __typename
-            id
-            name
-            dishes {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
+          categoryID
           price
           imageURL
           rating
@@ -809,6 +715,7 @@ export class APIService {
               __typename
               id
               name
+              categoryID
               price
               imageURL
               rating
@@ -875,17 +782,7 @@ export class APIService {
           __typename
           id
           name
-          category {
-            __typename
-            id
-            name
-            dishes {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
+          categoryID
           price
           imageURL
           rating
@@ -916,13 +813,7 @@ export class APIService {
             __typename
             id
             name
-            category {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
+            categoryID
             price
             imageURL
             rating
@@ -965,6 +856,7 @@ export class APIService {
               __typename
               id
               name
+              categoryID
               price
               imageURL
               rating
@@ -998,6 +890,7 @@ export class APIService {
               __typename
               id
               name
+              categoryID
               price
               imageURL
               rating
@@ -1031,6 +924,7 @@ export class APIService {
               __typename
               id
               name
+              categoryID
               price
               imageURL
               rating
@@ -1056,17 +950,7 @@ export class APIService {
           __typename
           id
           name
-          category {
-            __typename
-            id
-            name
-            dishes {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
+          categoryID
           price
           imageURL
           rating
@@ -1087,17 +971,7 @@ export class APIService {
           __typename
           id
           name
-          category {
-            __typename
-            id
-            name
-            dishes {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
+          categoryID
           price
           imageURL
           rating
@@ -1118,17 +992,7 @@ export class APIService {
           __typename
           id
           name
-          category {
-            __typename
-            id
-            name
-            dishes {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
+          categoryID
           price
           imageURL
           rating

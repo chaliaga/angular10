@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from './menu.service';
-import { APIService, ModelCategoryFilterInput, ModelDishFilterInput } from '../../API.service';
+import { APIService, ModelDishFilterInput } from '../../API.service';
 import { Dish } from '../../interface/dish';
 
 @Component({
@@ -15,21 +15,13 @@ export class MenuComponent implements OnInit {
     detailRecipe: string;
     titleName: string;
     displayDetail = false;
-    queryCat: ModelDishFilterInput;
+    queryCategory: ModelDishFilterInput;
 
     constructor(public menuService: MenuService, public api: APIService) {
     }
 
-    async ngOnInit(): Promise<void> {
-        /*
-        this.queryCat = {
-            category: {
-                eq: 'Comida Marina'
-            }
-        };*/
-        const result = await this.api.ListDishs();
-        this.dishesAll = result.items;
-        this.totalRecords = result.items.length;
+    public ngOnInit(): void {
+        this.populateMenu();
     }
 
     public addDish(dishSelected: Dish): void {
@@ -51,9 +43,21 @@ export class MenuComponent implements OnInit {
         }
     }*/
 
-    viewDetails(dish: Dish): void {
+    public viewDetails(dish: Dish): void {
         this.detailRecipe = dish.description;
         this.titleName = dish.name;
         this.displayDetail = true;
+    }
+
+    private populateMenu(): void {
+        this.queryCategory = {
+            categoryID: {
+                eq: 'b347f8fa-cbf5-4803-a761-9c273e00e20a'
+            }
+        };
+        this.api.ListDishs(this.queryCategory).then((data) => {
+            this.dishesAll = data.items;
+            this.totalRecords = data.items.length;
+        });
     }
 }

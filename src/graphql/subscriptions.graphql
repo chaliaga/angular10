@@ -7,6 +7,7 @@ subscription OnCreateCategory {
       items {
         id
         name
+        categoryID
         price
         imageURL
         rating
@@ -30,6 +31,7 @@ subscription OnUpdateCategory {
       items {
         id
         name
+        categoryID
         price
         imageURL
         rating
@@ -53,6 +55,7 @@ subscription OnDeleteCategory {
       items {
         id
         name
+        categoryID
         price
         imageURL
         rating
@@ -72,15 +75,7 @@ subscription OnCreateDish {
   onCreateDish {
     id
     name
-    category {
-      id
-      name
-      dishes {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
+    categoryID
     price
     imageURL
     rating
@@ -95,15 +90,7 @@ subscription OnUpdateDish {
   onUpdateDish {
     id
     name
-    category {
-      id
-      name
-      dishes {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
+    categoryID
     price
     imageURL
     rating
@@ -118,15 +105,7 @@ subscription OnDeleteDish {
   onDeleteDish {
     id
     name
-    category {
-      id
-      name
-      dishes {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
+    categoryID
     price
     imageURL
     rating

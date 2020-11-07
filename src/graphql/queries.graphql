@@ -7,6 +7,7 @@ query GetCategory($id: ID!) {
       items {
         id
         name
+        categoryID
         price
         imageURL
         rating
@@ -44,15 +45,7 @@ query GetDish($id: ID!) {
   getDish(id: $id) {
     id
     name
-    category {
-      id
-      name
-      dishes {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
+    categoryID
     price
     imageURL
     rating
@@ -72,12 +65,7 @@ query ListDishs(
     items {
       id
       name
-      category {
-        id
-        name
-        createdAt
-        updatedAt
-      }
+      categoryID
       price
       imageURL
       rating

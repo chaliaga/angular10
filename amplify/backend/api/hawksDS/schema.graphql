@@ -1,13 +1,14 @@
 type Category @model {
     id: ID!
     name: String!
-    dishes: [Dish] @connection(name: "CategoryDishes")
+    dishes: [Dish] @connection(keyName: "byCategory", fields:["id"])
 }
 
-type Dish @model {
+type Dish @model
+@key(name: "byCategory", fields: ["categoryID", "id"]){
     id: ID!
     name: String!
-    category: Category @connection(name: "CategoryDishes")
+    categoryID: ID!
     price: String!
     imageURL: String
     rating: Int
