@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuService } from './menu.service';
 import { APIService, ModelDishFilterInput } from '../../API.service';
 import { Dish } from '../../interface/dish';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'app-menu',
@@ -17,12 +18,16 @@ export class MenuComponent implements OnInit {
     displayDetail = false;
     queryCategory: ModelDishFilterInput;
     categoryName: string;
+    queryParamCategory: string;
 
-    constructor(public menuService: MenuService, public api: APIService) {
+    constructor(public menuService: MenuService, public api: APIService, private activatedRoute: ActivatedRoute) {
     }
 
     public ngOnInit(): void {
-        this.populateMenu();
+        this.activatedRoute.queryParams.subscribe((params: Params) => {
+            this.queryParamCategory = params.category;
+            this.populateMenu();
+        });
     }
 
     public addDish(dishSelected: Dish): void {
@@ -38,14 +43,14 @@ export class MenuComponent implements OnInit {
     private populateMenu(): void {
         this.queryCategory = {
             categoryID: {
-                eq: 'b347f8fa-cbf5-4803-a761-9c273e00e20a'
+                eq: this.queryParamCategory
             }
         };
         this.api.ListDishs(this.queryCategory).then((data) => {
             this.dishesAll = data.items;
             this.totalRecords = data.items.length;
-            this.api.GetCategory(this.dishesAll[0].categoryID).then((currentCategory) => {
-              this.categoryName = currentCategory.name;
+            this.api.GetCategory(this.dishesAll[ 0 ].categoryID).then((currentCategory) => {
+                this.categoryName = currentCategory.name;
             });
         });
     }
