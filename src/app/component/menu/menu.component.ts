@@ -28,6 +28,7 @@ export class MenuComponent implements OnInit {
             this.queryParamCategory = params.category;
             this.populateMenu();
         });
+        this.populateMenu();
     }
 
     public addDish(dishSelected: Dish): void {
@@ -43,7 +44,7 @@ export class MenuComponent implements OnInit {
     private populateMenu(): void {
         this.queryCategory = {
             categoryID: {
-                eq: this.queryParamCategory
+                eq: this.queryParamCategory ? this.queryParamCategory : 'b347f8fa-cbf5-4803-a761-9c273e00e20a'
             }
         };
         this.api.ListDishs(this.queryCategory).then((data) => {
