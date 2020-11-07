@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit {
     titleName: string;
     displayDetail = false;
     queryCategory: ModelDishFilterInput;
+    categoryName: string;
 
     constructor(public menuService: MenuService, public api: APIService) {
     }
@@ -27,21 +28,6 @@ export class MenuComponent implements OnInit {
     public addDish(dishSelected: Dish): void {
         this.menuService.addToCart(dishSelected);
     }
-
-    /*
-    public getStyleSpicy(spicy: SPICY): string {
-        switch (spicy) {
-            case SPICY.NOPICA: {
-                return 'no-pica';
-            }
-            case SPICY.PICAPOCO: {
-                return 'pica-poco';
-            }
-            case SPICY.PICAMUCHO: {
-                return 'pica-mucho';
-            }
-        }
-    }*/
 
     public viewDetails(dish: Dish): void {
         this.detailRecipe = dish.description;
@@ -58,6 +44,9 @@ export class MenuComponent implements OnInit {
         this.api.ListDishs(this.queryCategory).then((data) => {
             this.dishesAll = data.items;
             this.totalRecords = data.items.length;
+            this.api.GetCategory(this.dishesAll[0].categoryID).then((currentCategory) => {
+              this.categoryName = currentCategory.name;
+            });
         });
     }
 }

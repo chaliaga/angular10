@@ -78,22 +78,42 @@ export class DishComponent implements OnInit {
     saveDish(): void {
         this.submitted = true;
         if (this.dish.name.trim()) {
-            this.api.CreateDish({
-                name: this.dish.name,
-                categoryID: this.dish.categoryID,
-                price: this.dish.price,
-                imageURL: this.dish.imageURL,
-                rating: this.dish.rating,
-                description: this.dish.description,
-                portions: this.dish.portions,
-                readyMinutes: this.dish.readyMinutes
-            }).then((data) => {
-                this.dishDialog = false;
-                this.dish = null;
-                this.messageService.clear();
-                this.messageService.add({ severity: 'success', summary: 'Dish', detail: 'Successfully Save it' });
-                this.populateDish();
-            });
+            if (this.dish.id) {
+               this.api.UpdateDish({
+                   id: this.dish.id,
+                   name: this.dish.name,
+                   categoryID: this.dish.categoryID,
+                   price: this.dish.price,
+                   imageURL: this.dish.imageURL,
+                   rating: this.dish.rating,
+                   description: this.dish.description,
+                   portions: this.dish.portions,
+                   readyMinutes: this.dish.readyMinutes
+               }).then((currentDish) => {
+                   this.dishDialog = false;
+                   this.dish = null;
+                   this.messageService.clear();
+                   this.messageService.add({ severity: 'success', summary: 'Dish', detail: 'Successfully Update it' });
+                   this.populateDish();
+               });
+            } else {
+                this.api.CreateDish({
+                    name: this.dish.name,
+                    categoryID: this.dish.categoryID,
+                    price: this.dish.price,
+                    imageURL: this.dish.imageURL,
+                    rating: this.dish.rating,
+                    description: this.dish.description,
+                    portions: this.dish.portions,
+                    readyMinutes: this.dish.readyMinutes
+                }).then((data) => {
+                    this.dishDialog = false;
+                    this.dish = null;
+                    this.messageService.clear();
+                    this.messageService.add({ severity: 'success', summary: 'Dish', detail: 'Successfully Save it' });
+                    this.populateDish();
+                });
+            }
         }
     }
 
@@ -101,5 +121,10 @@ export class DishComponent implements OnInit {
         this.api.ListDishs().then((data) => {
             this.dishes = data.items;
         });
+    }
+
+    public editDish(dish): void {
+        this.dish = {...dish};
+        this.dishDialog = true;
     }
 }

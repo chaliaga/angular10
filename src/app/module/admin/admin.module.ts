@@ -12,6 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DialogModule } from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
         InputTextModule,
         ToolbarModule,
         DialogModule,
-        InputNumberModule
+        InputNumberModule,
+        InputTextareaModule
     ]
 })
 export class AdminModule {

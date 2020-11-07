@@ -10,11 +10,11 @@
             <div class="p-col-12">
                 <div class="product-list-item">
                     <div class="product-list-detail">
-                        <div class="product-name">{{dish.name}}</div>
-                        <p-rating [ngModel]="dish.rating" [readonly]="true"
+                        <div class="product-name p-m-2">{{dish.name}}</div>
+                        <p-rating [(ngModel)]="dish.rating" [readonly]="true" stars="10"
                                   [cancel]="false"></p-rating>
                         <i class="pi pi-tag product-category-icon"></i><span
-                            class="product-category">{{dish.category.name}}</span>
+                            class="product-category">{{ categoryName }}</span>
                     </div>
                     <div class="product-list-action">
                         <span class="product-price">${{dish.price}}</span>
@@ -43,10 +43,10 @@
                                 <td class="p-text-left">{{ dish.readyMinutes }} minutes</td>
                             </tr>
                         </table>
-                        <p-rating [ngModel]="dish.rating" [readonly]="true" stars="10"
+                        <p-rating [(ngModel)]="dish.rating" [readonly]="true" stars="10"
                                   [cancel]="false"></p-rating>
                     </div>
-                    <div class="product-grid-item-bottom">
+                    <div class="product-grid-item-bottom p-mt-4">
                         <span class="product-price">${{dish.price}}</span>
                         <p-button icon="pi pi-list" (click)="viewDetails(dish)"
                                   label="Details"></p-button>
