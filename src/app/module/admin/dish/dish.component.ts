@@ -3,6 +3,7 @@ import { Dish } from '../../../interface/dish';
 import { Table } from 'primeng/table';
 import { APIService } from '../../../API.service';
 import { MessageService } from 'primeng/api';
+import { Category } from '../../../interface/category';
 
 @Component({
     selector: 'app-dish',
@@ -14,6 +15,8 @@ export class DishComponent implements OnInit {
     dish: Dish;
     submitted: boolean;
     dishOriginal: { [ s: string ]: Dish; } = {};
+    categories: Category[];
+    selectedCategory: Category;
 
     @ViewChild('dt1') table: Table;
     selectedDishes: [ Dish ];
@@ -30,32 +33,6 @@ export class DishComponent implements OnInit {
         this.dish = {};
         this.submitted = false;
         this.dishDialog = true;
-    }
-
-    onRowEditInit(dish: any): void {
-        this.dishOriginal[ dish.id ] = { ...dish };
-    }
-
-    onRowEditSave(dish: any): void {
-        this.api.UpdateDish({
-            id: dish.id,
-            name: dish.name,
-            categoryID: dish.categoryID,
-            price: dish.price,
-            imageURL: dish.imageURL,
-            rating: dish.rating,
-            description: dish.description,
-            portions: dish.portions,
-            readyMinutes: dish.readyMinutes
-        }).then((data) => {
-            this.messageService.clear();
-            this.messageService.add({ severity: 'success', summary: 'Dish', detail: 'Successfully Update' });
-        });
-    }
-
-    onRowEditCancel(dish: any, index): void {
-        this.dishes[ index ] = this.dishOriginal[ dish.id ];
-        delete this.dishes[ dish.id ];
     }
 
     hideDialog(): void {
@@ -82,14 +59,14 @@ export class DishComponent implements OnInit {
                this.api.UpdateDish({
                    id: this.dish.id,
                    name: this.dish.name,
-                   categoryID: this.dish.categoryID,
+                   categoryID: this.selectedCategory.id,
                    price: this.dish.price,
                    imageURL: this.dish.imageURL,
                    rating: this.dish.rating,
                    description: this.dish.description,
                    portions: this.dish.portions,
                    readyMinutes: this.dish.readyMinutes
-               }).then((currentDish) => {
+               }).then(() => {
                    this.dishDialog = false;
                    this.dish = null;
                    this.messageService.clear();
@@ -99,14 +76,14 @@ export class DishComponent implements OnInit {
             } else {
                 this.api.CreateDish({
                     name: this.dish.name,
-                    categoryID: this.dish.categoryID,
+                    categoryID: this.selectedCategory.id,
                     price: this.dish.price,
                     imageURL: this.dish.imageURL,
                     rating: this.dish.rating,
                     description: this.dish.description,
                     portions: this.dish.portions,
                     readyMinutes: this.dish.readyMinutes
-                }).then((data) => {
+                }).then(() => {
                     this.dishDialog = false;
                     this.dish = null;
                     this.messageService.clear();
@@ -120,6 +97,13 @@ export class DishComponent implements OnInit {
     private populateDish(): void {
         this.api.ListDishs().then((data) => {
             this.dishes = data.items;
+            this.populateCategories();
+        });
+    }
+
+    private populateCategories(): void {
+        this.api.ListCategorys().then((data) => {
+           this.categories = data.items;
         });
     }
 

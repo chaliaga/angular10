@@ -13,12 +13,15 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { DialogModule } from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DropdownModule } from 'primeng/dropdown';
+import { CategoryPipe } from '../../util/category.pipe';
 
 @NgModule({
     declarations: [
         AdminComponent,
         DishComponent,
-        CategoryComponent ],
+        CategoryComponent,
+        CategoryPipe],
     imports: [
         CommonModule,
         FormsModule,
@@ -31,7 +34,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         ToolbarModule,
         DialogModule,
         InputNumberModule,
-        InputTextareaModule
+        InputTextareaModule,
+        DropdownModule
     ]
 })
 export class AdminModule {
