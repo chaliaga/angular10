@@ -29,7 +29,6 @@
             <th style="width: 3rem">
                 <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
             </th>
-            <!--<th>Id</th> -->
             <th>Name</th>
             <th>Category</th>
             <th>Image</th>
@@ -47,8 +46,9 @@
                 <p-tableCheckbox [value]="dish"></p-tableCheckbox>
             </td>
             <td>{{dish.name}}</td>
-            <td>{{ dish.categoryID.name }}</td>
-            <td><img [src]="dish.imageURL" width="100px" [alt]="dish.name" class="product-image"/></td>
+            <td>{{dish.categoryObject.name}}</td>
+            <td><img [src]="dish.imageURL" width="100px" [alt]="dish.name" class="product-image"/>
+            </td>
             <td>{{dish.readyMinutes}}</td>
             <td>{{dish.portions}}</td>
             <td>{{dish.price}}</td>

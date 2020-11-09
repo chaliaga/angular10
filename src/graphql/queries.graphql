@@ -1,4 +1,54 @@
 # this is an auto generated file. This will be overwritten
+query GetDish($id: ID!) {
+  getDish(id: $id) {
+    id
+    name
+    categoryObject {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    price
+    imageURL
+    rating
+    description
+    portions
+    readyMinutes
+    createdAt
+    updatedAt
+  }
+}
+query ListDishs(
+  $filter: ModelDishFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDishs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      categoryObject {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      price
+      imageURL
+      rating
+      description
+      portions
+      readyMinutes
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
 query GetCategory($id: ID!) {
   getCategory(id: $id) {
     id
@@ -7,7 +57,6 @@ query GetCategory($id: ID!) {
       items {
         id
         name
-        categoryID
         price
         imageURL
         rating
@@ -41,31 +90,27 @@ query ListCategorys(
     nextToken
   }
 }
-query GetDish($id: ID!) {
-  getDish(id: $id) {
-    id
-    name
-    categoryID
-    price
-    imageURL
-    rating
-    description
-    portions
-    readyMinutes
-    createdAt
-    updatedAt
-  }
-}
-query ListDishs(
-  $filter: ModelDishFilterInput
+query SearchDishs(
+  $filter: SearchableDishFilterInput
+  $sort: SearchableDishSortInput
   $limit: Int
   $nextToken: String
 ) {
-  listDishs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  searchDishs(
+    filter: $filter
+    sort: $sort
+    limit: $limit
+    nextToken: $nextToken
+  ) {
     items {
       id
       name
-      categoryID
+      categoryObject {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       price
       imageURL
       rating
@@ -76,5 +121,31 @@ query ListDishs(
       updatedAt
     }
     nextToken
+    total
+  }
+}
+query SearchCategorys(
+  $filter: SearchableCategoryFilterInput
+  $sort: SearchableCategorySortInput
+  $limit: Int
+  $nextToken: String
+) {
+  searchCategorys(
+    filter: $filter
+    sort: $sort
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+    total
   }
 }

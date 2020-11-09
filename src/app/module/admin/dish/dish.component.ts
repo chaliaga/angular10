@@ -14,13 +14,12 @@ export class DishComponent implements OnInit {
     dishes: any = [];
     dish: Dish;
     submitted: boolean;
-    dishOriginal: { [ s: string ]: Dish; } = {};
     categories: Category[];
     selectedCategory: Category;
 
     @ViewChild('dt1') table: Table;
     selectedDishes: [ Dish ];
-    dishDialog: boolean = false;
+    dishDialog = false;
 
     constructor(public api: APIService, public messageService: MessageService) {
     }
@@ -59,7 +58,7 @@ export class DishComponent implements OnInit {
                this.api.UpdateDish({
                    id: this.dish.id,
                    name: this.dish.name,
-                   categoryID: this.selectedCategory.id,
+                   categoryId: this.selectedCategory.id,
                    price: this.dish.price,
                    imageURL: this.dish.imageURL,
                    rating: this.dish.rating,
@@ -76,7 +75,7 @@ export class DishComponent implements OnInit {
             } else {
                 this.api.CreateDish({
                     name: this.dish.name,
-                    categoryID: this.selectedCategory.id,
+                    categoryId: this.selectedCategory.id,
                     price: this.dish.price,
                     imageURL: this.dish.imageURL,
                     rating: this.dish.rating,

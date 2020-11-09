@@ -1,4 +1,82 @@
 # this is an auto generated file. This will be overwritten
+mutation CreateDish(
+  $input: CreateDishInput!
+  $condition: ModelDishConditionInput
+) {
+  createDish(input: $input, condition: $condition) {
+    id
+    name
+    categoryObject {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    price
+    imageURL
+    rating
+    description
+    portions
+    readyMinutes
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateDish(
+  $input: UpdateDishInput!
+  $condition: ModelDishConditionInput
+) {
+  updateDish(input: $input, condition: $condition) {
+    id
+    name
+    categoryObject {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    price
+    imageURL
+    rating
+    description
+    portions
+    readyMinutes
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteDish(
+  $input: DeleteDishInput!
+  $condition: ModelDishConditionInput
+) {
+  deleteDish(input: $input, condition: $condition) {
+    id
+    name
+    categoryObject {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    price
+    imageURL
+    rating
+    description
+    portions
+    readyMinutes
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateCategory(
   $input: CreateCategoryInput!
   $condition: ModelCategoryConditionInput
@@ -10,7 +88,6 @@ mutation CreateCategory(
       items {
         id
         name
-        categoryID
         price
         imageURL
         rating
@@ -37,7 +114,6 @@ mutation UpdateCategory(
       items {
         id
         name
-        categoryID
         price
         imageURL
         rating
@@ -64,7 +140,6 @@ mutation DeleteCategory(
       items {
         id
         name
-        categoryID
         price
         imageURL
         rating
@@ -76,60 +151,6 @@ mutation DeleteCategory(
       }
       nextToken
     }
-    createdAt
-    updatedAt
-  }
-}
-mutation CreateDish(
-  $input: CreateDishInput!
-  $condition: ModelDishConditionInput
-) {
-  createDish(input: $input, condition: $condition) {
-    id
-    name
-    categoryID
-    price
-    imageURL
-    rating
-    description
-    portions
-    readyMinutes
-    createdAt
-    updatedAt
-  }
-}
-mutation UpdateDish(
-  $input: UpdateDishInput!
-  $condition: ModelDishConditionInput
-) {
-  updateDish(input: $input, condition: $condition) {
-    id
-    name
-    categoryID
-    price
-    imageURL
-    rating
-    description
-    portions
-    readyMinutes
-    createdAt
-    updatedAt
-  }
-}
-mutation DeleteDish(
-  $input: DeleteDishInput!
-  $condition: ModelDishConditionInput
-) {
-  deleteDish(input: $input, condition: $condition) {
-    id
-    name
-    categoryID
-    price
-    imageURL
-    rating
-    description
-    portions
-    readyMinutes
     createdAt
     updatedAt
   }

@@ -1,4 +1,73 @@
 # this is an auto generated file. This will be overwritten
+subscription OnCreateDish {
+  onCreateDish {
+    id
+    name
+    categoryObject {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    price
+    imageURL
+    rating
+    description
+    portions
+    readyMinutes
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateDish {
+  onUpdateDish {
+    id
+    name
+    categoryObject {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    price
+    imageURL
+    rating
+    description
+    portions
+    readyMinutes
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteDish {
+  onDeleteDish {
+    id
+    name
+    categoryObject {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    price
+    imageURL
+    rating
+    description
+    portions
+    readyMinutes
+    createdAt
+    updatedAt
+  }
+}
 subscription OnCreateCategory {
   onCreateCategory {
     id
@@ -7,7 +76,6 @@ subscription OnCreateCategory {
       items {
         id
         name
-        categoryID
         price
         imageURL
         rating
@@ -31,7 +99,6 @@ subscription OnUpdateCategory {
       items {
         id
         name
-        categoryID
         price
         imageURL
         rating
@@ -55,7 +122,6 @@ subscription OnDeleteCategory {
       items {
         id
         name
-        categoryID
         price
         imageURL
         rating
@@ -67,51 +133,6 @@ subscription OnDeleteCategory {
       }
       nextToken
     }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnCreateDish {
-  onCreateDish {
-    id
-    name
-    categoryID
-    price
-    imageURL
-    rating
-    description
-    portions
-    readyMinutes
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateDish {
-  onUpdateDish {
-    id
-    name
-    categoryID
-    price
-    imageURL
-    rating
-    description
-    portions
-    readyMinutes
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteDish {
-  onDeleteDish {
-    id
-    name
-    categoryID
-    price
-    imageURL
-    rating
-    description
-    portions
-    readyMinutes
     createdAt
     updatedAt
   }

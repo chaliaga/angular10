@@ -1,18 +1,21 @@
-type Category @model {
+type Dish @model @searchable{
     id: ID!
     name: String!
-    dishes: [Dish] @connection(keyName: "byCategory", fields:["id"])
-}
-
-type Dish @model
-@key(name: "byCategory", fields: ["categoryID", "id"]){
-    id: ID!
-    name: String!
-    categoryID: ID!
+    categoryObject: Category! @connection(name: "CategoryDish", keyField:"categoryId")
     price: String!
     imageURL: String
     rating: Int
     description: String
     portions: Int
     readyMinutes: Int
+}
+
+type Category @model @searchable{
+    id: ID!
+    name: String!
+    dishes: [Dish] @connection(name: "CategoryDish", keyField:"categoryId")
+}
+
+type Query {
+    dishesByCategory(categoryId: ID!): [Dish]
 }
