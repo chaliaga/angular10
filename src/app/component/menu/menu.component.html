@@ -14,7 +14,7 @@
                         <p-rating [(ngModel)]="dish.rating" [readonly]="true" stars="10"
                                   [cancel]="false"></p-rating>
                         <i class="pi pi-tag product-category-icon"></i><span
-                            class="product-category">{{ categoryName }}</span>
+                            class="product-category">{{ dish.categoryName }}</span>
                     </div>
                     <div class="product-list-action">
                         <span class="product-price">${{dish.price}}</span>

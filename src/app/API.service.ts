@@ -8,6 +8,7 @@ import { Observable } from "zen-observable-ts";
 export type CreateDishInput = {
   id?: string | null;
   name: string;
+  categoryName: string;
   price: string;
   imageURL?: string | null;
   rating?: number | null;
@@ -19,6 +20,7 @@ export type CreateDishInput = {
 
 export type ModelDishConditionInput = {
   name?: ModelStringInput | null;
+  categoryName?: ModelStringInput | null;
   price?: ModelStringInput | null;
   imageURL?: ModelStringInput | null;
   rating?: ModelIntInput | null;
@@ -84,6 +86,7 @@ export type ModelIntInput = {
 export type UpdateDishInput = {
   id: string;
   name?: string | null;
+  categoryName?: string | null;
   price?: string | null;
   imageURL?: string | null;
   rating?: number | null;
@@ -121,6 +124,7 @@ export type DeleteCategoryInput = {
 export type ModelDishFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
+  categoryName?: ModelStringInput | null;
   price?: ModelStringInput | null;
   imageURL?: ModelStringInput | null;
   rating?: ModelIntInput | null;
@@ -159,6 +163,7 @@ export type ModelCategoryFilterInput = {
 export type SearchableDishFilterInput = {
   id?: SearchableIDFilterInput | null;
   name?: SearchableStringFilterInput | null;
+  categoryName?: SearchableStringFilterInput | null;
   price?: SearchableStringFilterInput | null;
   imageURL?: SearchableStringFilterInput | null;
   rating?: SearchableIntFilterInput | null;
@@ -220,6 +225,7 @@ export type SearchableDishSortInput = {
 export enum SearchableDishSortableFields {
   id = "id",
   name = "name",
+  categoryName = "categoryName",
   price = "price",
   imageURL = "imageURL",
   rating = "rating",
@@ -255,6 +261,7 @@ export type CreateDishMutation = {
   __typename: "Dish";
   id: string;
   name: string;
+  categoryName: string;
   categoryObject: {
     __typename: "Category";
     id: string;
@@ -280,6 +287,7 @@ export type UpdateDishMutation = {
   __typename: "Dish";
   id: string;
   name: string;
+  categoryName: string;
   categoryObject: {
     __typename: "Category";
     id: string;
@@ -305,6 +313,7 @@ export type DeleteDishMutation = {
   __typename: "Dish";
   id: string;
   name: string;
+  categoryName: string;
   categoryObject: {
     __typename: "Category";
     id: string;
@@ -336,6 +345,7 @@ export type CreateCategoryMutation = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryName: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -361,6 +371,7 @@ export type UpdateCategoryMutation = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryName: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -386,6 +397,7 @@ export type DeleteCategoryMutation = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryName: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -401,10 +413,37 @@ export type DeleteCategoryMutation = {
   updatedAt: string;
 };
 
+export type DishesByCategoryQuery = {
+  __typename: "Dish";
+  id: string;
+  name: string;
+  categoryName: string;
+  categoryObject: {
+    __typename: "Category";
+    id: string;
+    name: string;
+    dishes: {
+      __typename: "ModelDishConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  price: string;
+  imageURL: string | null;
+  rating: number | null;
+  description: string | null;
+  portions: number | null;
+  readyMinutes: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type GetDishQuery = {
   __typename: "Dish";
   id: string;
   name: string;
+  categoryName: string;
   categoryObject: {
     __typename: "Category";
     id: string;
@@ -432,6 +471,7 @@ export type ListDishsQuery = {
     __typename: "Dish";
     id: string;
     name: string;
+    categoryName: string;
     categoryObject: {
       __typename: "Category";
       id: string;
@@ -461,6 +501,7 @@ export type GetCategoryQuery = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryName: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -498,6 +539,7 @@ export type SearchDishsQuery = {
     __typename: "Dish";
     id: string;
     name: string;
+    categoryName: string;
     categoryObject: {
       __typename: "Category";
       id: string;
@@ -539,6 +581,7 @@ export type OnCreateDishSubscription = {
   __typename: "Dish";
   id: string;
   name: string;
+  categoryName: string;
   categoryObject: {
     __typename: "Category";
     id: string;
@@ -564,6 +607,7 @@ export type OnUpdateDishSubscription = {
   __typename: "Dish";
   id: string;
   name: string;
+  categoryName: string;
   categoryObject: {
     __typename: "Category";
     id: string;
@@ -589,6 +633,7 @@ export type OnDeleteDishSubscription = {
   __typename: "Dish";
   id: string;
   name: string;
+  categoryName: string;
   categoryObject: {
     __typename: "Category";
     id: string;
@@ -620,6 +665,7 @@ export type OnCreateCategorySubscription = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryName: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -645,6 +691,7 @@ export type OnUpdateCategorySubscription = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryName: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -670,6 +717,7 @@ export type OnDeleteCategorySubscription = {
       __typename: "Dish";
       id: string;
       name: string;
+      categoryName: string;
       price: string;
       imageURL: string | null;
       rating: number | null;
@@ -698,6 +746,7 @@ export class APIService {
           __typename
           id
           name
+          categoryName
           categoryObject {
             __typename
             id
@@ -739,6 +788,7 @@ export class APIService {
           __typename
           id
           name
+          categoryName
           categoryObject {
             __typename
             id
@@ -780,6 +830,7 @@ export class APIService {
           __typename
           id
           name
+          categoryName
           categoryObject {
             __typename
             id
@@ -827,6 +878,7 @@ export class APIService {
               __typename
               id
               name
+              categoryName
               price
               imageURL
               rating
@@ -868,6 +920,7 @@ export class APIService {
               __typename
               id
               name
+              categoryName
               price
               imageURL
               rating
@@ -909,6 +962,7 @@ export class APIService {
               __typename
               id
               name
+              categoryName
               price
               imageURL
               rating
@@ -935,12 +989,51 @@ export class APIService {
     )) as any;
     return <DeleteCategoryMutation>response.data.deleteCategory;
   }
+  async DishesByCategory(
+    categoryId: string
+  ): Promise<Array<DishesByCategoryQuery>> {
+    const statement = `query DishesByCategory($categoryId: ID!) {
+        dishesByCategory(categoryId: $categoryId) {
+          __typename
+          id
+          name
+          categoryName
+          categoryObject {
+            __typename
+            id
+            name
+            dishes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          price
+          imageURL
+          rating
+          description
+          portions
+          readyMinutes
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      categoryId
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <Array<DishesByCategoryQuery>>response.data.dishesByCategory;
+  }
   async GetDish(id: string): Promise<GetDishQuery> {
     const statement = `query GetDish($id: ID!) {
         getDish(id: $id) {
           __typename
           id
           name
+          categoryName
           categoryObject {
             __typename
             id
@@ -982,6 +1075,7 @@ export class APIService {
             __typename
             id
             name
+            categoryName
             categoryObject {
               __typename
               id
@@ -1028,6 +1122,7 @@ export class APIService {
               __typename
               id
               name
+              categoryName
               price
               imageURL
               rating
@@ -1101,6 +1196,7 @@ export class APIService {
             __typename
             id
             name
+            categoryName
             categoryObject {
               __typename
               id
@@ -1188,6 +1284,7 @@ export class APIService {
           __typename
           id
           name
+          categoryName
           categoryObject {
             __typename
             id
@@ -1219,6 +1316,7 @@ export class APIService {
           __typename
           id
           name
+          categoryName
           categoryObject {
             __typename
             id
@@ -1250,6 +1348,7 @@ export class APIService {
           __typename
           id
           name
+          categoryName
           categoryObject {
             __typename
             id
@@ -1289,6 +1388,7 @@ export class APIService {
               __typename
               id
               name
+              categoryName
               price
               imageURL
               rating
@@ -1322,6 +1422,7 @@ export class APIService {
               __typename
               id
               name
+              categoryName
               price
               imageURL
               rating
@@ -1355,6 +1456,7 @@ export class APIService {
               __typename
               id
               name
+              categoryName
               price
               imageURL
               rating

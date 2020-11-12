@@ -51,7 +51,7 @@
             </td>
             <td>{{dish.readyMinutes}}</td>
             <td>{{dish.portions}}</td>
-            <td>{{dish.price}}</td>
+            <td>{{dish.price | currency }}</td>
             <td>{{dish.rating}}</td>
             <td>{{dish.description}}</td>
             <td style="text-align:center">
@@ -78,9 +78,9 @@
             </div>
             <div class="p-field p-row p-col-12 p-text-left">
                 <label for="category">Category</label>
-                <p-dropdown id="category" [options]="categories" [(ngModel)]="selectedCategory"
-                            optionLabel="name"></p-dropdown>
-                <small class="p-invalid" *ngIf="submitted && !selectedCategory">Category is
+                <p-dropdown id="category" [options]="categories" [(ngModel)]="categorySelected"
+                            optionLabel="label"></p-dropdown>
+                <small class="p-invalid" *ngIf="submitted && !dish.categoryObject.id">Category is
                     required.</small>
             </div>
             <div class="p-field p-row p-col-12 p-text-left">
@@ -102,8 +102,7 @@
             </div>
             <div class="p-field p-row p-col-12 p-text-left">
                 <label for="description">Description</label>
-                <textarea id="description" pInputTextarea [(ngModel)]="dish.description" required
-                          [rows]="10" [cols]="25"></textarea>
+                <p-editor id="description" [(ngModel)]="dish.description" [style]="{'height':'320px'}"></p-editor>
             </div>
             <div class="p-field p-row p-col-12 p-text-left">
                 <label for="portions">Portions</label>

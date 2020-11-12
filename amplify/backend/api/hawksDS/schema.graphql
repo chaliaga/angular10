@@ -1,6 +1,7 @@
 type Dish @model @searchable{
     id: ID!
     name: String!
+    categoryName: String!
     categoryObject: Category! @connection(name: "CategoryDish", keyField:"categoryId")
     price: String!
     imageURL: String

@@ -15,6 +15,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 import { CategoryPipe } from '../../util/category.pipe';
+import { EditorModule } from 'primeng/editor';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { CategoryPipe } from '../../util/category.pipe';
         DialogModule,
         InputNumberModule,
         InputTextareaModule,
-        DropdownModule
+        DropdownModule,
+        EditorModule
     ]
 })
 export class AdminModule {

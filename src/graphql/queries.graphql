@@ -1,8 +1,33 @@
 # this is an auto generated file. This will be overwritten
+query DishesByCategory($categoryId: ID!) {
+  dishesByCategory(categoryId: $categoryId) {
+    id
+    name
+    categoryName
+    categoryObject {
+      id
+      name
+      dishes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    price
+    imageURL
+    rating
+    description
+    portions
+    readyMinutes
+    createdAt
+    updatedAt
+  }
+}
 query GetDish($id: ID!) {
   getDish(id: $id) {
     id
     name
+    categoryName
     categoryObject {
       id
       name
@@ -31,6 +56,7 @@ query ListDishs(
     items {
       id
       name
+      categoryName
       categoryObject {
         id
         name
@@ -57,6 +83,7 @@ query GetCategory($id: ID!) {
       items {
         id
         name
+        categoryName
         price
         imageURL
         rating
@@ -105,6 +132,7 @@ query SearchDishs(
     items {
       id
       name
+      categoryName
       categoryObject {
         id
         name

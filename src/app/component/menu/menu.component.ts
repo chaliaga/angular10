@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from './menu.service';
-import { APIService, ModelDishFilterInput, SearchableDishFilterInput } from '../../API.service';
+import { APIService, ModelDishFilterInput } from '../../API.service';
 import { Dish } from '../../interface/dish';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -17,8 +17,7 @@ export class MenuComponent implements OnInit {
     titleName: string;
     displayDetail = false;
     queryCategory: ModelDishFilterInput;
-    categoryName: string;
-    queryParamCategory: string;
+    queryParamCategory = '';
 
     constructor(public menuService: MenuService, public api: APIService, private activatedRoute: ActivatedRoute) {
     }
@@ -42,18 +41,14 @@ export class MenuComponent implements OnInit {
     }
 
     private populateMenu(): void {
-        /*
         this.queryCategory = {
-            categoryId: {
-                eq: this.queryParamCategory ? this.queryParamCategory : 'b347f8fa-cbf5-4803-a761-9c273e00e20a'
+            categoryName: {
+                eq: this.queryParamCategory ? this.queryParamCategory : 'Comida Criolla'
             }
-        };*/
-        this.api.ListDishs().then((data) => {
+        };
+        this.api.ListDishs(this.queryCategory).then((data) => {
             this.dishesAll = data.items;
             this.totalRecords = data.items.length;
-            this.api.GetCategory(this.dishesAll[ 0 ].categoryID).then((currentCategory) => {
-                this.categoryName = currentCategory.name;
-            });
         });
     }
 }

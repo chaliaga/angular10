@@ -1,8 +1,10 @@
+import { Category } from './category';
+
 export interface Dish {
     id?: string;
     name?: string;
     categoryID?: string;
-    category?: string;
+    categoryObject?: Category;
     price?: string;
     imageURL?: string;
     rating?: number;

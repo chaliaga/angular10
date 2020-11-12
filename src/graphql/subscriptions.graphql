@@ -3,6 +3,7 @@ subscription OnCreateDish {
   onCreateDish {
     id
     name
+    categoryName
     categoryObject {
       id
       name
@@ -26,6 +27,7 @@ subscription OnUpdateDish {
   onUpdateDish {
     id
     name
+    categoryName
     categoryObject {
       id
       name
@@ -49,6 +51,7 @@ subscription OnDeleteDish {
   onDeleteDish {
     id
     name
+    categoryName
     categoryObject {
       id
       name
@@ -76,6 +79,7 @@ subscription OnCreateCategory {
       items {
         id
         name
+        categoryName
         price
         imageURL
         rating
@@ -99,6 +103,7 @@ subscription OnUpdateCategory {
       items {
         id
         name
+        categoryName
         price
         imageURL
         rating
@@ -122,6 +127,7 @@ subscription OnDeleteCategory {
       items {
         id
         name
+        categoryName
         price
         imageURL
         rating

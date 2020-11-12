@@ -6,6 +6,7 @@ mutation CreateDish(
   createDish(input: $input, condition: $condition) {
     id
     name
+    categoryName
     categoryObject {
       id
       name
@@ -32,6 +33,7 @@ mutation UpdateDish(
   updateDish(input: $input, condition: $condition) {
     id
     name
+    categoryName
     categoryObject {
       id
       name
@@ -58,6 +60,7 @@ mutation DeleteDish(
   deleteDish(input: $input, condition: $condition) {
     id
     name
+    categoryName
     categoryObject {
       id
       name
@@ -88,6 +91,7 @@ mutation CreateCategory(
       items {
         id
         name
+        categoryName
         price
         imageURL
         rating
@@ -114,6 +118,7 @@ mutation UpdateCategory(
       items {
         id
         name
+        categoryName
         price
         imageURL
         rating
@@ -140,6 +145,7 @@ mutation DeleteCategory(
       items {
         id
         name
+        categoryName
         price
         imageURL
         rating
