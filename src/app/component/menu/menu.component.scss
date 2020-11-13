@@ -1,4 +1,11 @@
 :host ::ng-deep {
+  #contentHTML p {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   ul.equipment,
   ul.ingredient {
     list-style: none;

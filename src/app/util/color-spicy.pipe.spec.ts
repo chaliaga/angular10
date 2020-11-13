@@ -1,12 +1,12 @@
 import { ColorSpicyPipe } from './color-spicy.pipe';
 import { SPICY } from './constanst';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ColorSpicyPipe', () => {
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserModule
