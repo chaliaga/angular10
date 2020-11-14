@@ -21,10 +21,6 @@ export class MenuService {
         return this._cart;
     }
 
-    public calculateTotal(): number {
-        return this._cart.reduce((a, b) => a + (parseFloat(b.price) || 0), 0);
-    }
-
     public addToCart(dishSelected: Dish): void {
         this.messageService.clear();
         if (dishSelected && !this.isDishAlreadySelected(dishSelected.id)) {

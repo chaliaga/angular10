@@ -1,11 +1,14 @@
-<div class="card">
+<ngx-skeleton-loader count="3" animation="pulse" *ngIf="!dishesAll"
+                     [theme]="{ 'border-radius': '3', height: '175%' }"></ngx-skeleton-loader>
+<div class="card" *ngIf="dishesAll">
     <p-dataView #dv [value]="dishesAll" filterBy="name" layout="grid"
                 [loading]="isLoading" [paginator]="true" [rows]="9" [totalRecords]="totalRecords">
         <ng-template pTemplate="header">
             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
                  <span class="p-input-icon-left p-mb-2 p-mb-md-0">
                     <i class="pi pi-search"></i>
-                    <input class="p-mr-2" type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                    <input class="p-mr-2" type="search" pInputText placeholder="Search by Name"
+                           (input)="dv.filter($event.target.value)">
                      {{ queryParamCategory }}
                 </span>
                 <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
@@ -35,7 +38,8 @@
                     <div class="product-grid-item-content">
                         <div class="product-name">{{dish.name}}</div>
                         <div>
-                            <img [src]="dish.imageURL" width="100px" [alt]="dish.name" class="product-image"
+                            <img [src]="dish.imageURL" width="100px" [alt]="dish.name"
+                                 class="product-image"
                                  (load)="this.isLoading = false;"/>
                         </div>
                         <table>

@@ -24,6 +24,7 @@
     "@aws-amplify/cli": "^4.29.6",
     "@aws-amplify/ui-angular": "^0.4.6",
     "aws-amplify": "3.2.0",
+    "ngx-skeleton-loader": "^2.5.0",
     "primeflex": "2.0.0",
     "primeicons": "^4.0.0",
     "primeng": "10.0.3",

@@ -30,6 +30,7 @@ import { PostComponent } from './component/post/post.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialAllModule } from './material-all.module';
 import { MessageService } from 'primeng/api';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 Amplify.configure(awsconfig);
 
@@ -64,7 +65,8 @@ Amplify.configure(awsconfig);
         HttpClientModule,
         ReactiveFormsModule,
         LayoutModule,
-        MaterialAllModule
+        MaterialAllModule,
+        NgxSkeletonLoaderModule
     ],
     providers: [ HttpClient, MessageService ],
     exports: [

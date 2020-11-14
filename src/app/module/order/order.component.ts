@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../component/menu/menu.service';
 import { MessageService } from 'primeng/api';
 import { Dish } from '../../interface/dish';
+import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -11,15 +12,17 @@ import { Dish } from '../../interface/dish';
 })
 export class OrderComponent implements OnInit {
     cart: Dish[];
-    total: number;
-    quantityDefault = 1;
+    total = 0;
+    dishesOrder = new FormArray([]);
 
     constructor(public menuService: MenuService, public messageService: MessageService) {
     }
 
     ngOnInit(): void {
         this.messageService.clear();
-        this.cart = this.menuService.cart;
+        this.menuService.cart.forEach((currentDishOrder) => {
+            this.addDishToOrderForm(currentDishOrder);
+        });
     }
 
     deleteCurrentDish(id: string): void {
@@ -28,6 +31,33 @@ export class OrderComponent implements OnInit {
     }
 
     calculateTotal(): void {
-        this.total = this.menuService.calculateTotal();
+        this.total = 0;
+        this.dishesOrder.controls.forEach((currentGroup) => {
+            this.total = this.total + parseFloat(currentGroup.get('subTotal').value);
+        });
+    }
+
+    addDishToOrderForm(dishOrder): void {
+        const groupDish = new FormGroup({
+            id: new FormControl(''),
+            name: new FormControl(''),
+            price: new FormControl(''),
+            quantity: new FormControl(''),
+            subTotal: new FormControl('')
+        });
+
+        groupDish.controls.id.setValue(dishOrder.id);
+        groupDish.controls.name.setValue(dishOrder.name);
+        groupDish.controls.price.setValue(dishOrder.price);
+        groupDish.controls.quantity.setValue(1);
+        groupDish.controls.subTotal.setValue(0);
+        this.dishesOrder.push(groupDish);
+    }
+
+    calculateSubTotal(item: number): void {
+        const currentFormControl = this.dishesOrder.controls[item] as FormGroup;
+        const currentSubTotal = currentFormControl.controls.price.value * currentFormControl.controls.quantity.value;
+        currentFormControl.controls.subTotal.patchValue(currentSubTotal);
+        this.calculateTotal();
     }
 }
