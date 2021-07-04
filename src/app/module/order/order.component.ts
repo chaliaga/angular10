@@ -23,6 +23,7 @@ export class OrderComponent implements OnInit {
         this.menuService.cart.forEach((currentDishOrder) => {
             this.addDishToOrderForm(currentDishOrder);
         });
+        this.calculateTotal();
     }
 
     deleteCurrentDish(id: string): void {
