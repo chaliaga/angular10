@@ -50,7 +50,7 @@ export class OrderComponent implements OnInit {
         groupDish.controls.name.setValue(dishOrder.name);
         groupDish.controls.price.setValue(dishOrder.price);
         groupDish.controls.quantity.setValue(1);
-        groupDish.controls.subTotal.setValue(0);
+        groupDish.controls.subTotal.setValue(dishOrder.price);
         this.dishesOrder.push(groupDish);
     }
 

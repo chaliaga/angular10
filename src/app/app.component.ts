@@ -47,7 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
         return onAuthUIStateChange;
     }
 
-    totalDishes(): string {
-        return this.menuService.cart ? this.menuService.cart.length.toString() : '0';
+    totalDishes(): number {
+        return this.menuService.cart ? this.menuService.cart.length : 0;
     }
 }
