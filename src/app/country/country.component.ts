@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../interface/country';
-import * as countriesJSON from './../../assets/json/countries.json';
 import { UpperCasePipe } from '@angular/common';
 import { PrefixPipe } from '../util/prefix.pipe';
 
@@ -18,7 +17,7 @@ export class CountryComponent implements OnInit {
 
   constructor(private upperCasePipe: UpperCasePipe, private prefixPipe: PrefixPipe) {
     // this.countries = countriesJSON;
-    this.selected = countriesJSON[10];
+    // this.selected = countriesJSON[10];
   }
 
   ngOnInit(): void {
