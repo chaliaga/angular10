@@ -35,15 +35,17 @@ export class AppComponent implements OnInit, OnDestroy {
                     { label: 'Admin', icon: 'pi pi-cog', routerLink: ['/app-admin'] },
                     /*{ label: 'Menu Material', icon: 'pi pi-eye', routerLink: ['/app-material'] },
                     { label: 'See Post', icon: 'pi pi-eye', routerLink: ['/app-post'] },*/
-                    { label: 'Platos Criollos', icon: 'pi pi-home', routerLink: ['/app-menu'], queryParams: {'category': 'Comida Criolla'} },
-                    { label: 'Platos Marinos', icon: 'pi pi-filter', routerLink: ['/app-menu'], queryParams: {'category': 'Comida Marina'}},
+                    { label: 'Platos Criollos', icon: 'pi pi-home', routerLink: ['/app-menu'],
+                      queryParams: {category: 'Comida Criolla'} },
+                    { label: 'Platos Marinos', icon: 'pi pi-filter', routerLink: ['/app-menu'],
+                      queryParams: {category: 'Comida Marina'}},
                     { label: 'Quit' }
                 ]
             }
         ];
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): any {
         return onAuthUIStateChange;
     }
 
