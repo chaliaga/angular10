@@ -1,9 +1,0 @@
-{{ total | percent }} <br /><br />
-{{total | currency: selected.currencies[0].symbol }} <br /><br />
-{{ selected.currencies[0].name | uppercase }} <br /><br />
-{{ birthday | date: "fulldate" | lowercase }}
-<br /><br />
-<pre>
-    {{selected | json }}
-</pre>
-<button pButton type="button" label="Send" (click)="send(selected.name)"></button>
